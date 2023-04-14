@@ -1,0 +1,32 @@
+{
+    "i":{
+        "citation":"Part A",
+        "desc":"",
+        "length":0,
+        "lessons":{
+            "i.1":{
+                "desc":"",
+                "exerciseless":true
+            },
+            "i.2":{
+                "desc":"",
+                "exerciseless":true
+            }
+        }
+    },
+    "ii":{
+        "citation":"Part A",
+        "desc":"",
+        "length":0,
+        "lessons":{
+            "i.1":{
+                "desc":"",
+                "exerciseless":true
+            },
+            "i.2":{
+                "desc":"",
+                "exerciseless":true
+            }
+        }
+    }
+}

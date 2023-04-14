@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
+    <script src="script.js" defer></script>
+    <title>SENĆOŦEN SCUL</title>
+</head>
+
+<body>
+
+    <nav id="main-nav">
+        <a href="#">
+            <h1>SENĆOŦEN SCUL</h1>
+            <span>based on the notes of Timothy Montler</span>
+        </a>
+        <div class="material-symbols-outlined" onclick="toggleInfobox()">info</div>
+    </nav>
+
+    <div id="info-lightbox">
+        <div id="info-card">
+            <h2>More Information</h2>
+            <p>SENĆOŦEN SCUL is an modern online website with the aim of making the SENĆOŦEN language more accessible to all. It is intended provide insights ranging from the place SENĆOŦEN has in the world to small details in SENĆOŦEN grammar. Most of the content of this website is based off of the work of Professor Timothy Montler, who has dedicated much of this linguistic career to studying the SENĆOŦEN language.</p>
+            <p><br>&copy; 2023 wmtmky.github.io/</p>
+            <button onclick="toggleInfobox()">
+                <h2>Great!</h2>
+            </button>
+        </div>
+    </div>
+
+    <main id="main">
+
+        <section id="section-1">
+            <header>
+                <h2>Introduction</h2>
+                <p>SENĆOŦEN is a unique language with a unique history. Completion of these introductory units will enlighten the learner on this language's place in the world, render them able to read, and even teach them a few phrases. It is fulfilling for anyone wanting to educate themselves on the fundamentals of what SENĆOŦEN is, without going through the challenge of learning a new language. Get started below!</p>
+            </header>
+
+            <div id="unit-i" class="unit green exerciseless" onclick="toggleUnit('i', event)">
+
+                <div class="unit-heading">
+                    <h2 class="unit-title">Unit I: The SENĆOŦEN Language</h2>
+                    <div class="material-symbols-outlined">arrow_forward_ios</div>
+                </div>
+
+                <p class="unit-desc">Where is SENĆOŦEN spoken? What languages are similar? How do words in SENĆOŦEN even work?<br><em>*Note there are no exercises in this unit</em>
+                </p>
+
+                <div class="unit-body">
+                    <div class="unit-stats">
+                        <div id="unit-i-status" class="material-symbols-outlined">subdirectory_arrow_left</div>
+                        <div class="unit-progress">
+                            <span id="unit-i-progress">0</span> / 0
+                        </div>
+                    </div>
+                    <div class="material-symbols-outlined">exercise</div>
+                </div>
+                
+            </div>
+
+            <div id="unit-ii" class="unit blue" onclick="toggleUnit('ii', event)">
+
+                <div class="unit-heading">
+                    <h2 class="unit-title">Unit II: The SENĆOŦEN Alphabet</h2>
+                    <div class="material-symbols-outlined">arrow_forward_ios</div>
+                </div>
+
+                <p class="unit-desc">SENĆOŦEN letters, letter sounds, listening</p>
+
+                <div class="unit-body">
+                    <div class="unit-stats">
+                        <div id="unit-ii-status" class="material-symbols-outlined">subdirectory_arrow_left</div>
+                        <div class="unit-progress">
+                            <span id="unit-ii-progress">0</span> / 0
+                        </div>
+                    </div>
+                    <div class="material-symbols-outlined">exercise</div>
+                </div>
+
+            </div>
+
+            <div id="unit-iii" class="unit red" onclick="toggleUnit('iii', event)">
+
+                <div class="unit-heading">
+                    <h2 class="unit-title">Unit III: Useful Phrases</h2>
+                    <div class="material-symbols-outlined">arrow_forward_ios</div>
+                </div>
+
+                <p class="unit-desc">A few useful phrases that everyone should know</p>
+
+                <div class="unit-body">
+                    <div class="unit-stats">
+                        <div id="unit-iii-status" class="material-symbols-outlined">subdirectory_arrow_left</div>
+                        <div class="unit-progress">
+                            <span id="unit-iii-progress">0</span> / 0
+                        </div>
+                    </div>
+                    <div class="material-symbols-outlined">exercise</div>
+                </div>
+
+            </div>
+
+        </section>
+        
+        <section id="section-2">
+            <header>
+                <h2>Basics</h2>
+                <p>Both the Introductory and Basics units are based on the works of Professor Timothy Montler. These units are designed to directly replicate those of <em>Saanich Grammar</em>, allowing the learner to reference the original text for themselves through inline links. It is important to be confident with the introductory units on the left before beginning these ones. Get started below!</p>
+            </header>
+
+            <div id="unit-1" class="unit purple" onclick="toggleUnit(1, event)">
+
+                <div class="unit-heading">
+                    <h2 class="unit-title">Unit 1: The Basic Sentence</h2>
+                    <div class="material-symbols-outlined">arrow_forward_ios</div>
+                </div>
+
+                <p class="unit-desc">Transitive and intransitive verbs, pronouns</p>
+
+                <div class="unit-body">
+                    <div class="unit-stats">
+                        <div id="unit-1-status" class="material-symbols-outlined">subdirectory_arrow_left</div>
+                        <div class="unit-progress">
+                            <span id="unit-1-progress">0</span> / 0
+                        </div>
+                    </div>
+                    <div class="material-symbols-outlined">exercise</div>
+                </div>
+                
+            </div>
+
+            <div id="unit-2" class="unit red unavailable" onclick="toggleUnit(2, event)">
+
+                <div class="unit-heading">
+                    <h2 class="unit-title">Unit 2: Past and Future</h2>
+                    <div class="material-symbols-outlined">arrow_forward_ios</div>
+                </div>
+
+                <p class="unit-desc">Simple past tense and future tense sentences</p>
+
+                <div class="unit-body">
+                    <div class="unit-stats">
+                        <div id="unit-s-status" class="material-symbols-outlined">subdirectory_arrow_left</div>
+                        <div class="unit-progress">
+                            <span id="unit-s-progress">0</span> / 0
+                        </div>
+                    </div>
+                    <div class="material-symbols-outlined">exercise</div>
+                </div>
+                
+            </div>
+
+            <div id="unit-3" class="unit green unavailable" onclick="toggleUnit(3, event)">
+
+                <div class="unit-heading">
+                    <h2 class="unit-title">Unit 3: Basic Speech Acts</h2>
+                    <div class="material-symbols-outlined">arrow_forward_ios</div>
+                </div>
+
+                <p class="unit-desc">Commands, yes or no questions</p>
+
+                <div class="unit-body">
+                    <div class="unit-stats">
+                        <div id="unit-3-status" class="material-symbols-outlined">subdirectory_arrow_left</div>
+                        <div class="unit-progress">
+                            <span id="unit-3-progress">0</span> / 0
+                        </div>
+                    </div>
+                    <div class="material-symbols-outlined">exercise</div>
+                </div>
+                
+            </div>
+
+            <div id="unit-4" class="unit blue unavailable" onclick="toggleUnit(4, event)">
+
+                <div class="unit-heading">
+                    <h2 class="unit-title">Unit 4: Nouns and Articles</h2>
+                    <div class="material-symbols-outlined">arrow_forward_ios</div>
+                </div>
+
+                <p class="unit-desc">Nouns, and particular, not visible particular, not particular, and feminine articles</p>
+
+                <div class="unit-body">
+                    <div class="unit-stats">
+                        <div id="unit-4-status" class="material-symbols-outlined">subdirectory_arrow_left</div>
+                        <div class="unit-progress">
+                            <span id="unit-4-progress">0</span> / 0
+                        </div>
+                    </div>
+                    <div class="material-symbols-outlined">exercise</div>
+                </div>
+                
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>
