@@ -10,7 +10,7 @@ function loadPage() {
 
     if(resource.includes("overview")) {
         let overviewPage = resource.split("#")[1];
-        if(!overviewPage) return location.href.replace("https://wmtmky.github.io/SENCOTENSCUL");
+        if(!overviewPage) return window.location.assign("https://wmtmky.github.io/SENCOTENSCUL");
 
         fetch("https://wmtmky.github.io/SENCOTENSCUL/lessons.json")
         .then(jsonFile => jsonFile.json())
@@ -37,7 +37,7 @@ function toggleUnit(unitNum, event) {
 
     //save to local storsge
 
-    location.href.replace("https://wmtmky.github.io/SENCOTENSCUL/overview#" + unitNum);
+    window.location.assign("https://wmtmky.github.io/SENCOTENSCUL/overview#" + unitNum);
 }
 
 
