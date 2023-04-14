@@ -10,11 +10,10 @@ function loadPage() {
 
     if(resource.includes("overview")) {
         let overviewPage = resource.split("#")[1];
-        if(!overviewPage) return window.location.assign("https://wmtmky.github.io/SENCOTENSCUL");
+        if(!+overviewPage) return window.location.assign("/..");
 
         fetch("https://wmtmky.github.io/SENCOTENSCUL/lessons.json")
-        .then(jsonFile => jsonFile.json())
-        .then(jsonObject => lessons = JSON.parse(jsonObject))
+        .then(jsonFile => lessons = jsonFile.json())
 
         loadOverview(overviewPage);
     }
@@ -22,8 +21,14 @@ function loadPage() {
 
 function loadOverview(pageID) {
     let overviewTitle = document.getElementById("overview-title");
+    let overviewDesc = document.getElementById("overview-desc");
+    let overviewCitation = document.getElementById("overview-citation");
+    let overviewContent = document.getElementById("overview-content");
 
     overviewTitle.innerText = "Unit " + pageID.toUpperCase() + ": " + lessons[pageID].title;
+    overviewDesc.innerText = lesson[pageID].desc;
+    overviewCitation.innerText = lesson[pageID].citation;
+
 }
 
 

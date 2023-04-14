@@ -298,6 +298,8 @@ nav#overview-header{
     }
 
 main#overview-body{
+    display: flex;
+    flex-direction: column;
     margin-top: var(--header-height);
     padding: var(--secondary-height);
 }
