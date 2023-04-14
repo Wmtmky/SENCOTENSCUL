@@ -17,7 +17,8 @@ function loadPage() {
         if(!(overviewPage.length > 0)) return redirectMain();
 
         fetch("https://wmtmky.github.io/SENCOTENSCUL/lessons.json")
-        .then(jsonFile => lessons = jsonFile.json())
+        .then(jsonFile => jsonFile.json())
+        .then(jsonObject => lessons = jsonObject)
 
         loadOverview(overviewPage);
     }
