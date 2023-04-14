@@ -4,13 +4,17 @@ window.onload = function() {
     loadPage();
 }
 
+function redirectMain() {
+    window.location.assign("https://wmtmky.github.io/SENCOTENSCUL")
+}
+
 function loadPage() {
     let resource = location.href.split("SENCOTENSCUL/")[1];
     if(!resource) return;
 
     if(resource.includes("overview")) {
         let overviewPage = resource.split("#")[1];
-        if(!+overviewPage) return window.location.assign("/..");
+        if(!+overviewPage) return redirectMain();
 
         fetch("https://wmtmky.github.io/SENCOTENSCUL/lessons.json")
         .then(jsonFile => lessons = jsonFile.json())
@@ -39,6 +43,7 @@ function toggleInfobox() {
 
 function toggleUnit(unitNum, event) {
     if(event.target?.innerText.match("exercise|subdirectory")) return;
+    console.log(unitNum)
 
     //save to local storsge
 
