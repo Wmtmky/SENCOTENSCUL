@@ -5,7 +5,7 @@ window.onload = function() {
 }
 
 function redirectMain() {
-    window.location.assign("https://wmtmky.github.io/SENCOTENSCUL")
+    window.location.assign("https://wmtmky.github.io/SENCOTENSCUL/")
 }
 
 function loadPage() {
@@ -14,7 +14,7 @@ function loadPage() {
 
     if(resource.includes("overview")) {
         let overviewPage = resource.split("#")[1];
-        if(!+overviewPage) return redirectMain();
+        if(!(overviewPage.length > 0)) return redirectMain();
 
         fetch("https://wmtmky.github.io/SENCOTENSCUL/lessons.json")
         .then(jsonFile => lessons = jsonFile.json())
