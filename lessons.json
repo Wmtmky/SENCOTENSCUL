@@ -1,7 +1,8 @@
 {
     "i":{
-        "citation":"Part A",
+        "title":"The SENĆOŦEN Language",
         "desc":"",
+        "citation":"Part A",
         "length":0,
         "lessons":{
             "i.1":{
@@ -15,8 +16,9 @@
         }
     },
     "ii":{
-        "citation":"Part A",
+        "title":"The SENĆOŦEN Alphabet",
         "desc":"",
+        "citation":"Part A",
         "length":0,
         "lessons":{
             "i.1":{
