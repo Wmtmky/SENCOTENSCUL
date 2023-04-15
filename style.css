@@ -268,10 +268,6 @@ main#main section div.unit{
         padding: var(--header-height);
         grid-template-columns: repeat(2, min(500px, calc(50vw - 15vh)));
     }
-
-    main#overview-body{
-        padding: var(--header-height);
-    }
 }
 
 @media only screen and (min-width: 600px) {
@@ -300,7 +296,7 @@ nav#overview-header{
     nav#overview-header div.material-symbols-outlined{
         margin: var(--secondary-height);
     }
-
+    
 main#overview-body{
     display: flex;
     flex-direction: column;
@@ -308,8 +304,39 @@ main#overview-body{
     padding: var(--secondary-height);
 }
 
+    main#overview-body div#overview-details{
+        display: flex;
+        gap:var(--secondary-height);
+    }
+
+        main#overview-body div#overview-details div#overview-citation{
+            color: var(--grey-dark);
+            font-size: small;
+        }
+
     main#overview-body div#overview-content{
         display: grid;
+        gap:var(--secondary-height);
         grid-template-columns: 48px 48px 1fr;
         max-width: 100%;
     }
+
+        main#overview-body div#overview-content div.lesson-btn-wrap{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main#overview-body div#overview-content div.lesson-btn-wrap div.material-symbols-outlined{
+            background-color: var(--grey-dark);
+            color: var(--white);
+            padding: 1vh;
+            border-radius: var(--header-height);
+        }
+
+
+@media only screen and (min-width: 1000px) {
+    main#overview-body{
+        padding: var(--header-height);
+    }
+}
