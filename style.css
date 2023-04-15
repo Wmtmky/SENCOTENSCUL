@@ -300,13 +300,15 @@ nav#overview-header{
 main#overview-body{
     display: flex;
     flex-direction: column;
+    gap: var(--secondary-height);
     margin-top: var(--header-height);
     padding: var(--secondary-height);
 }
 
     main#overview-body div#overview-details{
         display: flex;
-        gap:var(--secondary-height);
+        flex-direction: column;
+        gap: var(--secondary-height);
     }
 
         main#overview-body div#overview-details div#overview-citation{
@@ -316,7 +318,6 @@ main#overview-body{
 
     main#overview-body div#overview-content{
         display: grid;
-        gap:var(--secondary-height);
         grid-template-columns: 48px 48px 1fr;
         max-width: 100%;
     }
@@ -325,6 +326,7 @@ main#overview-body{
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 1vh;
         }
 
         main#overview-body div#overview-content div.lesson-btn-wrap div.material-symbols-outlined{

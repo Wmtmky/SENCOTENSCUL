@@ -90,7 +90,7 @@ function loadOverview(pageID) {
 
     overviewTitle.innerText = "Unit " + pageID.toUpperCase() + ": " + lessonsJSON[pageID].title;
     overviewDesc.innerText = lessonsJSON[pageID].desc;
-    overviewCitation.innerText = lessonsJSON[pageID].citation;
+    overviewCitation.innerText = "Reference: Saanich Grammar, " + lessonsJSON[pageID].citation;
 
     for(let lesson in lessonsJSON[pageID].lessons) {
         overviewContent.innerHTML +=
