@@ -303,3 +303,9 @@ main#overview-body{
     margin-top: var(--header-height);
     padding: var(--secondary-height);
 }
+
+    main#overview-body div#overview-content{
+        display: grid;
+        grid-template-columns: 48px 48px 1fr;
+        max-width: 100%;
+    }

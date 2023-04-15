@@ -1,4 +1,36 @@
-var lessons;
+var lessonsJSON = 
+{
+    "i":{
+        "title":"The SENĆOŦEN Language",
+        "desc":"",
+        "citation":"Part A",
+        "exerciseCount":0,
+        "lessons":{
+            "i.1":{
+                "desc":"",
+                "exerciseless":true
+            },
+            "i.2":{
+                "desc":"",
+                "exerciseless":true
+            }
+        }
+    },
+    "ii":{
+        "title":"The SENĆOŦEN Alphabet",
+        "desc":"",
+        "citation":"Part A",
+        "exerciseCount":0,
+        "lessons":{
+            "ii.1":{
+                "desc":""
+            },
+            "ii.2":{
+                "desc":""
+            }
+        }
+    }
+}
 
 window.onload = function() {
     loadPage();
@@ -14,11 +46,7 @@ function loadPage() {
 
     if(resource.includes("overview")) {
         let overviewPage = resource.split("#")[1];
-        if(!(overviewPage.length > 0)) return redirectMain();
-
-        fetch("https://wmtmky.github.io/SENCOTENSCUL/lessons.json")
-        .then(jsonFile => jsonFile.json())
-        .then(jsonObject => lessons = jsonObject)
+        if(lessonsJSON[overviewPage] == undefined) return redirectMain();
 
         loadOverview(overviewPage);
     }
@@ -30,9 +58,20 @@ function loadOverview(pageID) {
     let overviewCitation = document.getElementById("overview-citation");
     let overviewContent = document.getElementById("overview-content");
 
-    overviewTitle.innerText = "Unit " + pageID.toUpperCase() + ": " + lessons[pageID].title;
-    overviewDesc.innerText = lesson[pageID].desc;
-    overviewCitation.innerText = lesson[pageID].citation;
+    overviewTitle.innerText = "Unit " + pageID.toUpperCase() + ": " + lessonsJSON[pageID].title;
+    overviewDesc.innerText = lessonsJSON[pageID].desc;
+    overviewCitation.innerText = lessonsJSON[pageID].citation;
+
+    for(let lesson in lessonsJSON[pageID].lessons) {
+        overviewContent.innerHTML +=
+        `<div class="lesson-btn-wrap">
+            <div class="material-symbols-outlined" onclick="loadLearn('${lesson}')">menu_book</div>
+        </div>
+        <div class="lesson-btn-wrap">
+            <div class="material-symbols-outlined" onclick="loadReview('${review}')">exercise</div>
+        </div>
+        <div class="lesson-desc">${lesson.desc}</div>`;
+    }
 
 }
 
