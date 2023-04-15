@@ -24,6 +24,9 @@
     --grey-medium: #d0d0d0;
     --grey-dark: #092327;
     --black: #000009;
+
+    --accent: var(--grey-dark);
+    --clear: rgba(0,0,0,0);
     
     --header-height: 10vh;
     --secondary-height: 3vh;
@@ -288,10 +291,20 @@ nav#overview-header{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--grey-dark);
+    background-color: var(--accent);
     color: var(--white);
     z-index: 4;
 }
+
+    nav#overview-header #overview-title{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    nav#overview-header #overview-title:hover{
+        white-space: normal;
+    }
 
     nav#overview-header div.material-symbols-outlined{
         margin: var(--secondary-height);
@@ -312,13 +325,15 @@ main#overview-body{
     }
 
         main#overview-body div#overview-details div#overview-citation{
-            color: var(--grey-dark);
+            color: var(--accent);
             font-size: small;
         }
 
     main#overview-body div#overview-content{
         display: grid;
         grid-template-columns: 48px 48px 1fr;
+        align-items: center;
+        column-gap: var(--secondary-height);
         max-width: 100%;
     }
 
@@ -326,14 +341,20 @@ main#overview-body{
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100%;
             padding: 1vh;
+            background-image: linear-gradient(90deg, var(--clear), var(--clear) 30%, var(--accent) 30%, var(--accent) 40%, var(--clear) 40%, var(--clear) 60%, var(--accent) 60%, var(--accent) 70%, var(--clear) 70%);
         }
 
-        main#overview-body div#overview-content div.lesson-btn-wrap div.material-symbols-outlined{
-            background-color: var(--grey-dark);
-            color: var(--white);
-            padding: 1vh;
-            border-radius: var(--header-height);
+            main#overview-body div#overview-content div.lesson-btn-wrap div.material-symbols-outlined{
+                background-color: var(--accent);
+                color: var(--white);
+                padding: 1vh;
+                border-radius: var(--header-height);
+            }
+
+        main#overview-body div#overview-content div.lesson-desc{
+            margin: 1vh 0;
         }
 
 
