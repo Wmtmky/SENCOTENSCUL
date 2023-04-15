@@ -176,6 +176,7 @@ main#main section div.unit{
 
     main#main section div.unit:not(.unavailable):hover{
         transform: translate(5px, 5px);
+        cursor: pointer;
     }
 
     main#main section div.unit:is(.green){
@@ -283,7 +284,7 @@ main#main section div.unit{
 
 
 
-nav#overview-header{
+nav#overview-header, nav#learn-header{
     display: flex;
     position: fixed;
     top: 0;
@@ -295,7 +296,7 @@ nav#overview-header{
     align-items: center;
     background-color: var(--accent-medium);
     color: var(--white);
-    z-index: 4;
+    z-index: 1;
 }
 
     nav#overview-header #overview-title{
@@ -308,7 +309,7 @@ nav#overview-header{
         white-space: normal;
     }
 
-    nav#overview-header div.material-symbols-outlined{
+    *:is(nav#overview-header, nav#learn-header) div.material-symbols-outlined{
         margin: var(--secondary-height);
     }
     
@@ -333,7 +334,7 @@ main#overview-body{
 
     main#overview-body div#overview-content{
         display: grid;
-        grid-template-columns: 48px 48px 1fr;
+        grid-template-columns: 48px 48px 48px 1fr;
         align-items: center;
         column-gap: var(--secondary-height);
         max-width: 100%;
@@ -363,9 +364,13 @@ main#overview-body{
             margin: 1vh 0;
         }
 
+main#lesson-body{
+    margin-top: var(--header-height);
+    padding: var(--secondary-height);
+}
 
 @media only screen and (min-width: 1000px) {
-    main#overview-body{
+    *:is(main#overview-body, main#lesson-body) {
         padding: var(--header-height);
     }
 }
