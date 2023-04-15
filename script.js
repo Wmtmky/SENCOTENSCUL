@@ -29,6 +29,34 @@ var lessonsJSON =
                 "desc":""
             }
         }
+    },
+    "iii":{
+        "title":"The SENĆOŦEN Alphabet",
+        "desc":"",
+        "citation":"Part A",
+        "exerciseCount":0,
+        "lessons":{
+            "iii.1":{
+                "desc":""
+            },
+            "iii.2":{
+                "desc":""
+            }
+        }
+    },
+    "1":{
+        "title":"The SENĆOŦEN Alphabet",
+        "desc":"",
+        "citation":"Part A",
+        "exerciseCount":0,
+        "lessons":{
+            "1.1":{
+                "desc":""
+            },
+            "1.2":{
+                "desc":""
+            }
+        }
     }
 }
 
@@ -68,7 +96,7 @@ function loadOverview(pageID) {
             <div class="material-symbols-outlined" onclick="loadLearn('${lesson}')">menu_book</div>
         </div>
         <div class="lesson-btn-wrap">
-            <div class="material-symbols-outlined" onclick="loadReview('${review}')">exercise</div>
+            <div class="material-symbols-outlined" onclick="loadReview('${lesson}')">exercise</div>
         </div>
         <div class="lesson-desc">${lesson.desc}</div>`;
     }

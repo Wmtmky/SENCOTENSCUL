@@ -268,6 +268,10 @@ main#main section div.unit{
         padding: var(--header-height);
         grid-template-columns: repeat(2, min(500px, calc(50vw - 15vh)));
     }
+
+    main#overview-body{
+        padding: var(--header-height);
+    }
 }
 
 @media only screen and (min-width: 600px) {
