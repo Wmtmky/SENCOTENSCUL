@@ -1,4 +1,4 @@
-let version = "202304151344";
+let version = "04151408";
 
 var root = document.querySelector(':root');
 var lessonsJSON = 
@@ -96,16 +96,22 @@ function loadOverview(pageID) {
     overviewTitle.innerText = "Unit " + pageID.toUpperCase() + ": " + lessonsJSON[pageID].title;
     overviewDesc.innerText = lessonsJSON[pageID].desc;
     overviewCitation.innerText = "Reference: Saanich Grammar, " + lessonsJSON[pageID].citation;
+    overviewContent.innerHTML = "";
 
-    root.style.setProperty('--accent', "var(" + lessonsJSON[pageID].color + "-medium)");
+    root.style.setProperty('--accent-medium', "var(--" + lessonsJSON[pageID].color + "-medium)");
+    root.style.setProperty('--accent-light', "var(--" + lessonsJSON[pageID].color + "-light)");
+    root.style.setProperty('--accent-dark', "var(--" + lessonsJSON[pageID].color + "-dark)");
 
     for(let lesson in lessonsJSON[pageID].lessons) {
+        let isExerciseless = "";
+        if (lessonsJSON[pageID].lessons[lesson].exerciseless) isExerciseless = "exerciseless"; 
+
         overviewContent.innerHTML +=
         `<div class="lesson-btn-wrap">
-            <div class="material-symbols-outlined" onclick="loadLearn('${lesson}')">menu_book</div>
+            <div class="material-symbols-outlined" onclick="redirectLearn('${lesson}')">menu_book</div>
         </div>
         <div class="lesson-btn-wrap">
-            <div class="material-symbols-outlined" onclick="loadExercise('${lesson}')">exercise</div>
+            <div class="material-symbols-outlined ${isExerciseless}" onclick="redirectExercise('${lesson}')">exercise</div>
         </div>
         <div class="lesson-desc">${lessonsJSON[pageID].lessons[lesson].desc}</div>`;
     }
@@ -113,23 +119,26 @@ function loadOverview(pageID) {
 }
 
 
+
+function redirectUnit(unitID, event) {
+    if(event.target?.innerText.match("exercise|subdirectory")) return;
+
+    window.location.assign("https://wmtmky.github.io/SENCOTENSCUL/overview#" + unitID);
+}
+
+function redirectLearn(lessonID) {
+    window.location.assign("https://wmtmky.github.io/SENCOTENSCUL/learn#" + lessonID);
+}
+
+function redirectExercise(lessonID) {
+    window.location.assign("https://wmtmky.github.io/SENCOTENSCUL/exercise#" + lessonID);
+}
+
+
 function toggleInfobox() {
     let infoLightbox = document.getElementById('info-lightbox');
     infoLightbox.style.display = (infoLightbox.style.display != 'flex') ? 'flex' : 'none';
 }
-
-function toggleUnit(unitNum, event) {
-    if(event.target?.innerText.match("exercise|subdirectory")) return;
-    console.log(unitNum)
-
-    //save to local storsge
-
-    window.location.assign("https://wmtmky.github.io/SENCOTENSCUL/overview#" + unitNum);
-}
-
-
-
-
 
 
 

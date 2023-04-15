@@ -25,7 +25,9 @@
     --grey-dark: #092327;
     --black: #000009;
 
-    --accent: var(--grey-dark);
+    --accent-medium: var(--grey-dark);
+    --accent-dark: var(--black);
+    --accent-light: var(--grey-medium);
     --clear: rgba(0,0,0,0);
     
     --header-height: 10vh;
@@ -37,7 +39,7 @@
     font-size: 36px;
 }
 
-.material-symbols-outlined:hover{
+.material-symbols-outlined:not(.exerciseless):hover{
     transform: scale(1.25);
 }
 
@@ -291,7 +293,7 @@ nav#overview-header{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--accent);
+    background-color: var(--accent-medium);
     color: var(--white);
     z-index: 4;
 }
@@ -325,7 +327,7 @@ main#overview-body{
     }
 
         main#overview-body div#overview-details div#overview-citation{
-            color: var(--accent);
+            color: var(--grey-dark);
             font-size: small;
         }
 
@@ -343,14 +345,18 @@ main#overview-body{
             align-items: center;
             height: 100%;
             padding: 1vh;
-            background-image: linear-gradient(90deg, var(--clear), var(--clear) 30%, var(--accent) 30%, var(--accent) 40%, var(--clear) 40%, var(--clear) 60%, var(--accent) 60%, var(--accent) 70%, var(--clear) 70%);
+            background-image: linear-gradient(90deg, var(--clear), var(--clear) 40%, var(--accent-light) 40%, var(--accent-light) 60%, var(--clear) 60%);
         }
 
             main#overview-body div#overview-content div.lesson-btn-wrap div.material-symbols-outlined{
-                background-color: var(--accent);
+                background-color: var(--accent-medium);
                 color: var(--white);
                 padding: 1vh;
                 border-radius: var(--header-height);
+            }
+
+            main#overview-body div#overview-content div.lesson-btn-wrap div.material-symbols-outlined:is(.exerciseless){
+                background-color: var(--accent-light);
             }
 
         main#overview-body div#overview-content div.lesson-desc{
