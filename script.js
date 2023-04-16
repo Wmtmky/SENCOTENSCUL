@@ -1,4 +1,4 @@
-let version = "04161519";
+let version = "04161610";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -53,7 +53,7 @@ var lessonsJSON =
     },
     "1":{
         "title":"The Basic Sentence",
-        "desc":"This unit looks at the simplest phrases employing transitive and intransitive verbs. In these phrases, the verbs always comes first, followed by the subject which in this case will be a pronoun. To clarify: Intransitive verbs cannot have a direct object, while Transitive verbs do. In SENĆOŦEN, transitive verbs also always end in a<em>transitivising suffix</em> like -T, -NEW̱, or -TW̱. Intransitive verbs cannot end with these suffixes but could still naturally end with those letters.<br><br>Examples:<br>Intransitive: She runs away &rarr; ȽÁU<br>Transitive: He hit her &rarr; ŚJET",
+        "desc":"This unit looks at the simplest phrases employing transitive and intransitive verbs. In these phrases, the verbs always comes first, followed by the subject which in this case will be a pronoun.<br>Recall that intransitive verbs cannot have a direct object, while transitive verbs do.<br>In SENĆOŦEN, transitive verbs also always end in a<em>transitivising suffix</em> like -T, -NEW̱, or -TW̱. Intransitive verbs cannot end with these suffixes but could still naturally end with those letters.<br><br>Examples:<br>Intransitive: She runs away &rarr; ȽÁU<br>Transitive: He hit her &rarr; ŚJET",
         "citation":"§1.1 - §1.2",
         "color":"purple",
         "exerciseCount":0,
@@ -77,7 +77,7 @@ var textbookJSON = {
     "ii.2":"Lesson II.2 is Not Available",
     "iii.1":"Lesson III.1 is Not Available",
     "iii.2":"Lesson III.2 is Not Available",
-    "1.1":"Singular pronouns refer to one participant: that is I, you, he, she, or it.<br>Observe the following models:<br><br>YÁ¸ SEN. &rarr; I go.<br>YÁ¸ SW̱. &rarr; You go.<br>YÁ¸. &rarr; He/She/It goes.<br><br>Observe how the verb comes before the subject. The pronouns after the verb are<em>particles</em>, which cannot act as words by themselves. Note the subject is implied to be a third person (he/she/it) by default.<br><br>Here are some more intransitive verbs, which all happen to be motion related.<br><br>YÁ¸ &rarr; 'go'<br>ŚTEṈ &rarr; Walk<br>ȻONEṈET &rarr; 'run'<br>W̱ITEṈ %rarr; 'jump'",
+    "1.1":"Singular pronouns refer to one participant: that is I, you, he, she, or it.<br>Observe the following models:<br><br>YÁ¸ SEN. &rarr; I go.<br>YÁ¸ SW̱. &rarr; You go.<br>YÁ¸. &rarr; He/She/It goes.<br><br>Observe how the verb comes before the subject. The pronouns after the verb are <em>particles</em>, which cannot act as words by themselves. Note the subject is implied to be a third person (he/she/it) by default.<br><br>Here are some more intransitive verbs, which all happen to be motion related.<br><br>YÁ¸ &rarr; 'go'<br>ŚTEṈ &rarr; Walk<br>ȻONEṈET &rarr; 'run'<br>W̱ITEṈ &rarr; 'jump'",
     "1.2":"1.2 lesson",
     "1.3":"1.2 lesson",
 }
@@ -109,7 +109,7 @@ var exerciseJSON = {
 
     }
 }
-var completeJSON = {
+var completedJSON = {
     // intentionally blank
 }
 
@@ -125,21 +125,22 @@ function redirectMain() {
 
 function loadPage() {
     let resource = location.href.split("SENCOTENSCUL/")[1];
-    if(!resource) return;
+    if(!resource) return loadCompleted();
 
     let subPage = resource.split("#")[1];
 
     if(resource.includes("overview")) {
         if(lessonsJSON?.[subPage] == undefined) return redirectMain();
         loadOverview(subPage);
+        loadCompleted(subPage);
     }
 
-    if(resource.includes("learn")) {
+    else if(resource.includes("learn")) {
         if(textbookJSON?.[subPage] == undefined) return redirectMain();
         loadLearn(subPage);
     }
 
-    if(resource.includes("exercise")) {
+    else if(resource.includes("exercise")) {
         if(exerciseJSON?.[subPage] == undefined) return redirectMain();
         loadExercise(subPage);
     }
@@ -171,7 +172,7 @@ function loadOverview(pageID) {
             <div class="material-symbols-outlined" onclick="redirectLearn('${lesson}')">menu_book</div>
         </div>
         <div class="lesson-btn-wrap">
-            <div class="material-symbols-outlined ${isExerciseless}" onclick="redirectExercise('${lesson}')">exercise</div>
+            <div id="lesson-${lesson}-exercise" class="material-symbols-outlined ${isExerciseless}" onclick="redirectExercise('${lesson}')">exercise</div>
         </div>
         <div class="lesson-desc">${lessonsJSON[pageID].lessons[lesson].desc}</div>`;
     }
@@ -201,7 +202,28 @@ function loadExercise(lessonID) {
     </nav>
     <main id="exercise-body">
         ${exerciseJSON[lessonID]}
-    </main>`
+    </main>
+    <footer id="exercise-footer">
+
+    </footer>
+    `
+}
+
+function loadCompleted(unitID) {
+    let storedCompleted = localStorage.getItem("completed");
+    if (storedCompleted) completedJSON = JSON.parse(storedCompleted);
+    
+    if(unitID == undefined) {
+        for(unit in completedJSON) {
+            document.getElementById("unit-" + unit + "-progress").innerText = Object.keys(completedJSON[unit]).length;
+        }
+        return;
+    }
+
+    for(lesson in completedJSON[unitID]) {
+        document.getElementById("lesson-" + lesson + "-exercise").innerText = "done";
+    }
+
 }
 
 /* Redirect */
@@ -221,6 +243,10 @@ function redirectExercise(lessonID) {
 }
 
 /* Nav Functions */
+
+function resetProgress() {
+    localStorage.clear();
+}
 
 function toggleInfobox() {
     let infoLightbox = document.getElementById('info-lightbox');
