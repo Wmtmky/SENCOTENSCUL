@@ -1,4 +1,4 @@
-let version = "04151739";
+let version = "04160112";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -6,7 +6,7 @@ var lessonsJSON =
 {
     "i":{
         "title":"The SENĆOŦEN Language",
-        "desc":"This unit is a preface to learning the SENĆOŦEN language. It contextualizes the place of SENĆOŦEN within its neighbours, and discusses the nature of words. There are no exercises in this unit.",
+        "desc":"This unit is a preface to learning the SENĆOŦEN language. It contextualizes the place of SENĆOŦEN within its neighbours, and discusses the nature of words.<br>There are no exercises in this unit.",
         "citation":"Part 1, Pages 2-7",
         "color":"green",
         "exerciseCount":0,
@@ -38,7 +38,7 @@ var lessonsJSON =
     },
     "iii":{
         "title":"Useful Phrases",
-        "desc":"Twenty-four useful phrases that should be learned right away according to Professor Montler.",
+        "desc":"Twenty-four useful phrases that should be learned 'right away' according to Professor Montler. In fact, they are given before the alphabet is in <em>Saanich Grammar</em>!",
         "citation":"Part 1, Page 7",
         "color":"red",
         "exerciseCount":0,
@@ -53,16 +53,16 @@ var lessonsJSON =
     },
     "1":{
         "title":"The Basic Sentence",
-        "desc":"",
+        "desc":"This unit looks at the simplest phrases employing transitive and intransitive verbs. In SENĆOŦEN, an intransitive verb cannot have a direct object, while a transitive verb does. Transitive verbs also always end in a<em>transitivising suffix</em> like -T, -NEW̱, or -TW̱. Intransitive verbs cannot end with these suffixes but could still naturally end with those letters.<br><br>Examples:<br>Intransitive: She runs away / ȽÁU<br>Transitive: He hit her / ŚJET",
         "citation":"§1.1 - §1.2",
         "color":"purple",
         "exerciseCount":0,
         "lessons":{
             "1.1":{
-                "desc":""
+                "desc":"1.1 lesson"
             },
             "1.2":{
-                "desc":""
+                "desc":"1.2 lesson"
             }
         }
     }
@@ -78,7 +78,16 @@ var textbookJSON = {
     "1.2":"1.2 lesson"
 }
 var exerciseJSON = {
+    "ii.1":{},
+    "ii.2":{},
+    "iii.1":{},
+    "iii.2":{},
+    "1.1":{
 
+    },
+    "1.2":{
+
+    },
 }
 var completeJSON = {
     // intentionally blank
