@@ -317,6 +317,8 @@ main#overview-body{
     display: flex;
     flex-direction: column;
     gap: var(--secondary-height);
+    top: 0;
+    left: 0;
     margin-top: var(--header-height);
     padding: var(--secondary-height);
 }
@@ -367,6 +369,8 @@ main#overview-body{
 main#lesson-body{
     margin-top: var(--header-height);
     padding: var(--secondary-height);
+    top: 0;
+    left: 0;
 }
 
 @media only screen and (min-width: 1000px) {

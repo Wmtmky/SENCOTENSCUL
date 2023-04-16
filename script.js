@@ -1,6 +1,7 @@
 let version = "04151620";
 
 var root = document.querySelector(':root');
+var body = document.querySelector('body');
 var lessonsJSON = 
 {
     "i":{
@@ -68,12 +69,26 @@ var lessonsJSON =
 }
 var textbookJSON = {
     "i.1":"i.1 lesson",
-    "i.2":"i.2 lesson"
+    "i.2":"i.2 lesson",
+    "ii.1":"ii.1 lesson",
+    "ii.2":"ii.2 lesson",
+    "iii.1":"iii.1 lesson",
+    "iii.2":"iii.2 lesson",
+    "1.1":"1.1 lesson",
+    "1.2":"1.2 lesson"
+}
+var exerciseJSON = {
+
+}
+var completeJSON = {
+    // intentionally blank
 }
 
 window.onload = function() {
     loadPage();
 }
+
+/* Load Page Features*/
 
 function redirectMain() {
     window.location.assign("https://wmtmky.github.io/SENCOTENSCUL/")
@@ -135,24 +150,26 @@ function loadOverview(pageID) {
 }
 
 function loadLearn(lessonID) {
-    let lessonTitle = document.getElementById('lesson-title');
-    let lessonExit = document.getElementById('lesson-exit');
-    let lessonExercise = document.getElementById('lesson-exercise');
-    let lessonBody = document.getElementById('lesson-body');
-
-    lessonTitle.innerText = "Lesson " + lessonID;
-    lessonExit.value = lessonID;
-    lessonExercise.value = lessonID;
-    lessonBody.innerHTML = textbookJSON[lessonID];
+    let unitID = lessonID.split(".")[0];
+    body.innerHTML +=
+    `<nav id="learn-header">
+        <div class="material-symbols-outlined" onclick="redirectUnit('${unitID}')">arrow_back_ios</div>
+        <h2 id="lesson-title">Lesson ${lessonID.toUpperCase()}</h2>
+    <div id="lesson-exercise" class="material-symbols-outlined" onclick="redirectExercise('${lessonID}')">exercise</div>
+    </nav>
+    <main id="lesson-body">
+        ${textbookJSON[lessonID]}
+    </main>`
 }
 
 function loadExercise(lessonID) {
 
 }
 
+/* Redirect */
 
 function redirectUnit(unitID, event) {
-    if(event.target?.innerText.match("exercise|subdirectory")) return;
+    if(event?.target?.innerText.match("exercise|subdirectory")) return;
 
     window.location.assign("https://wmtmky.github.io/SENCOTENSCUL/overview#" + unitID);
 }
@@ -165,12 +182,16 @@ function redirectExercise(lessonID) {
     window.location.assign("https://wmtmky.github.io/SENCOTENSCUL/exercise#" + lessonID);
 }
 
+/* Nav Functions */
 
 function toggleInfobox() {
     let infoLightbox = document.getElementById('info-lightbox');
     infoLightbox.style.display = (infoLightbox.style.display != 'flex') ? 'flex' : 'none';
 }
 
+function exitLesson(lessonID) {
+    redirectUnit(lessonID.split(".")[0]);
+}
 
 
 
