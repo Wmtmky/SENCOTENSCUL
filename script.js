@@ -1,4 +1,4 @@
-let version = "04161610";
+let version = "04161642";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -12,7 +12,7 @@ var lessonsJSON =
         "exerciseCount":0,
         "lessons":{
             "i.1":{
-                "desc":"The Context of SENĆOŦEN",
+                "desc":"Contextualizing SENĆOŦEN",
                 "exerciseless":true
             },
             "i.2":{
@@ -79,7 +79,7 @@ var textbookJSON = {
     "iii.2":"Lesson III.2 is Not Available",
     "1.1":"Singular pronouns refer to one participant: that is I, you, he, she, or it.<br>Observe the following models:<br><br>YÁ¸ SEN. &rarr; I go.<br>YÁ¸ SW̱. &rarr; You go.<br>YÁ¸. &rarr; He/She/It goes.<br><br>Observe how the verb comes before the subject. The pronouns after the verb are <em>particles</em>, which cannot act as words by themselves. Note the subject is implied to be a third person (he/she/it) by default.<br><br>Here are some more intransitive verbs, which all happen to be motion related.<br><br>YÁ¸ &rarr; 'go'<br>ŚTEṈ &rarr; Walk<br>ȻONEṈET &rarr; 'run'<br>W̱ITEṈ &rarr; 'jump'",
     "1.2":"1.2 lesson",
-    "1.3":"1.2 lesson",
+    "1.3":"1.3 lesson",
 }
 var exerciseJSON = {
     "ii.1":{},
@@ -125,7 +125,13 @@ function redirectMain() {
 
 function loadPage() {
     let resource = location.href.split("SENCOTENSCUL/")[1];
-    if(!resource) return loadCompleted();
+    if(!resource) {
+        loadCompleted();
+        for(unit in lessonsJSON) {
+            document.getElementById("unit-" + unit + "-total").innerText = Object.keys(lessonsJSON[unit].lessons).length;
+        }
+        return;
+    }
 
     let subPage = resource.split("#")[1];
 
@@ -172,7 +178,7 @@ function loadOverview(pageID) {
             <div class="material-symbols-outlined" onclick="redirectLearn('${lesson}')">menu_book</div>
         </div>
         <div class="lesson-btn-wrap">
-            <div id="lesson-${lesson}-exercise" class="material-symbols-outlined ${isExerciseless}" onclick="redirectExercise('${lesson}')">exercise</div>
+            <div id="lesson-${lesson}-exercise" class="material-symbols-outlined ${isExerciseless}" onclick="redirectExercise('${lesson}', this)">exercise</div>
         </div>
         <div class="lesson-desc">${lessonsJSON[pageID].lessons[lesson].desc}</div>`;
     }
@@ -204,7 +210,8 @@ function loadExercise(lessonID) {
         ${exerciseJSON[lessonID]}
     </main>
     <footer id="exercise-footer">
-
+        <div id="question-status"></div>
+        <div id="next-question-btn" onclick="nextQuestion()"></div>
     </footer>
     `
 }
@@ -238,7 +245,8 @@ function redirectLearn(lessonID) {
     window.location.assign("https://wmtmky.github.io/SENCOTENSCUL/learn#" + lessonID);
 }
 
-function redirectExercise(lessonID) {
+function redirectExercise(lessonID, elem) {
+    if(elem.classList.contains('exerciseless')) return;
     window.location.assign("https://wmtmky.github.io/SENCOTENSCUL/exercise#" + lessonID);
 }
 
@@ -253,9 +261,7 @@ function toggleInfobox() {
     infoLightbox.style.display = (infoLightbox.style.display != 'flex') ? 'flex' : 'none';
 }
 
-function exitLesson(lessonID) {
-    redirectUnit(lessonID.split(".")[0]);
-}
+
 
 
 

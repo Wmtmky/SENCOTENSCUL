@@ -337,7 +337,7 @@ main#overview-body{
 
         main#overview-body div#overview-details div#overview-desc{
             user-select: auto;
-            max-width: 600px;
+            max-width: 1000px;
         }
 
         main#overview-body div#overview-details div#overview-citation{
@@ -384,11 +384,13 @@ main:not(#main-nav){
     left: 0;
 }
 
-main#exercise-nav {
+main#exercise-body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: calc(100vh - 3 * var(--header-height));
+    overflow-y: auto;
 }
 
 footer#exercise-footer{
@@ -397,7 +399,7 @@ footer#exercise-footer{
     flex-direction: row;
     left: 0;
     bottom: 0;
-    height: 20vh;
+    height: calc(2 * var(--header-height));
     width: 100%;
 }
 
