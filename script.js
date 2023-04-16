@@ -1,4 +1,4 @@
-let version = "04151721";
+let version = "04151739";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -23,7 +23,7 @@ var lessonsJSON =
     },
     "ii":{
         "title":"The SENĆOŦEN Alphabet",
-        "desc":"In the 1970's, the SENĆOŦEN language was in danger of going extinct, as younger generations were growing up speaking English. Seeing the urgency, Dave Elliot Sr. (1910 - 1985) created a writing system so remaining fluent speakers could teach the language to younger generations. He devised it so it would be easy to learn: it would be based off English, there would be one symbol per sound, and there would be no unusual characters such as those found in the standard alphabets of other indigenous North American languages.<br>The SENĆOŦEN Alphabet:<br>A Á Ⱥ B C Ć Ȼ D E H I Í J K ₭ Ḵ Ḱ L Ƚ M N Ṉ O P Q S Ś T Ŧ Ⱦ Ṯ U W W̱ X X̱ Y",
+        "desc":"In the 1970's, the SENĆOŦEN language was in danger of going extinct, as younger generations were growing up speaking English. Seeing the urgency, Dave Elliot Sr. (1910 - 1985) created a writing system so remaining fluent speakers could teach the language to younger generations. He devised it so it would be easy to learn: it would be based off English, there would be one symbol per sound, and there would be no unusual characters such as those found in the standard alphabets of other indigenous North American languages.<br><br>The SENĆOŦEN Alphabet:<br>A Á Ⱥ B C Ć Ȼ D E H I Í J K ₭ Ḵ Ḱ L Ƚ M N Ṉ O P Q S Ś T Ŧ Ⱦ Ṯ U W W̱ X X̱ Y",
         "citation":"Part 2, Pages 1-17",
         "color":"blue",
         "exerciseCount":0,
@@ -137,7 +137,7 @@ function loadOverview(pageID) {
         if (lessonsJSON[pageID].lessons[lesson].exerciseless) isExerciseless = "exerciseless"; 
 
         overviewContent.innerHTML +=
-        `<h3>${lesson}</h3>
+        `<h3>${lesson.toUpperCase()}</h3>
         <div class="lesson-btn-wrap">
             <div class="material-symbols-outlined" onclick="redirectLearn('${lesson}')">menu_book</div>
         </div>

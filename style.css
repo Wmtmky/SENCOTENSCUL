@@ -329,6 +329,10 @@ main#overview-body{
         gap: var(--secondary-height);
     }
 
+        main#overview-body div#overview-details div#overview-desc{
+            user-select: auto;
+        }
+
         main#overview-body div#overview-details div#overview-citation{
             color: var(--grey-dark);
             font-size: small;
