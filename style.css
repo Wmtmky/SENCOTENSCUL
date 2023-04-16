@@ -41,6 +41,7 @@
 
 .material-symbols-outlined:not(.exerciseless):hover{
     transform: scale(1.25);
+    cursor: pointer;
 }
 
 *:is(h2,h3) {
@@ -331,6 +332,7 @@ main#overview-body{
 
         main#overview-body div#overview-details div#overview-desc{
             user-select: auto;
+            max-width: 600px;
         }
 
         main#overview-body div#overview-details div#overview-citation{

@@ -1,4 +1,4 @@
-let version = "04160112";
+let version = "04161519";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -29,10 +29,10 @@ var lessonsJSON =
         "exerciseCount":0,
         "lessons":{
             "ii.1":{
-                "desc":""
+                "desc":"Not Available"
             },
             "ii.2":{
-                "desc":""
+                "desc":"Not Available"
             }
         }
     },
@@ -44,50 +44,70 @@ var lessonsJSON =
         "exerciseCount":0,
         "lessons":{
             "iii.1":{
-                "desc":""
+                "desc":"Not Available"
             },
             "iii.2":{
-                "desc":""
+                "desc":"Not Available"
             }
         }
     },
     "1":{
         "title":"The Basic Sentence",
-        "desc":"This unit looks at the simplest phrases employing transitive and intransitive verbs. In SENĆOŦEN, an intransitive verb cannot have a direct object, while a transitive verb does. Transitive verbs also always end in a<em>transitivising suffix</em> like -T, -NEW̱, or -TW̱. Intransitive verbs cannot end with these suffixes but could still naturally end with those letters.<br><br>Examples:<br>Intransitive: She runs away / ȽÁU<br>Transitive: He hit her / ŚJET",
+        "desc":"This unit looks at the simplest phrases employing transitive and intransitive verbs. In these phrases, the verbs always comes first, followed by the subject which in this case will be a pronoun. To clarify: Intransitive verbs cannot have a direct object, while Transitive verbs do. In SENĆOŦEN, transitive verbs also always end in a<em>transitivising suffix</em> like -T, -NEW̱, or -TW̱. Intransitive verbs cannot end with these suffixes but could still naturally end with those letters.<br><br>Examples:<br>Intransitive: She runs away &rarr; ȽÁU<br>Transitive: He hit her &rarr; ŚJET",
         "citation":"§1.1 - §1.2",
         "color":"purple",
         "exerciseCount":0,
         "lessons":{
             "1.1":{
-                "desc":"1.1 lesson"
+                "desc":"Intranstive Verbs I: Singular Pronouns, Motion Verbs"
             },
             "1.2":{
-                "desc":"1.2 lesson"
+                "desc":"Intransitive Verbs II: Plural Pronouns, Verbs from Everyday Life"
+            },
+            "1.3":{
+                "desc":"Intransitive Verbs III: Extra Notes"
             }
         }
     }
 }
 var textbookJSON = {
-    "i.1":"i.1 lesson",
-    "i.2":"i.2 lesson",
-    "ii.1":"ii.1 lesson",
-    "ii.2":"ii.2 lesson",
-    "iii.1":"iii.1 lesson",
-    "iii.2":"iii.2 lesson",
-    "1.1":"1.1 lesson",
-    "1.2":"1.2 lesson"
+    "i.1":"Lesson I.1 is Not Available",
+    "i.2":"Lesson I.2 is Not Available",
+    "ii.1":"Lesson II.1 is Not Available",
+    "ii.2":"Lesson II.2 is Not Available",
+    "iii.1":"Lesson III.1 is Not Available",
+    "iii.2":"Lesson III.2 is Not Available",
+    "1.1":"Singular pronouns refer to one participant: that is I, you, he, she, or it.<br>Observe the following models:<br><br>YÁ¸ SEN. &rarr; I go.<br>YÁ¸ SW̱. &rarr; You go.<br>YÁ¸. &rarr; He/She/It goes.<br><br>Observe how the verb comes before the subject. The pronouns after the verb are<em>particles</em>, which cannot act as words by themselves. Note the subject is implied to be a third person (he/she/it) by default.<br><br>Here are some more intransitive verbs, which all happen to be motion related.<br><br>YÁ¸ &rarr; 'go'<br>ŚTEṈ &rarr; Walk<br>ȻONEṈET &rarr; 'run'<br>W̱ITEṈ %rarr; 'jump'",
+    "1.2":"1.2 lesson",
+    "1.3":"1.2 lesson",
 }
 var exerciseJSON = {
     "ii.1":{},
     "ii.2":{},
     "iii.1":{},
     "iii.2":{},
-    "1.1":{
-
-    },
+    "1.1":[
+        {
+            "type":"gse",
+            "prompt":"YÁ¸ SEN.",
+            "answers":[
+                "i go"
+            ]
+        },
+        {
+            "type":"gse",
+            "prompt":"YÁ¸ SW̱.",
+            "answers":[
+                "you go"
+            ]
+        },
+    ],
     "1.2":{
 
     },
+    "1.3":{
+
+    }
 }
 var completeJSON = {
     // intentionally blank
@@ -172,7 +192,16 @@ function loadLearn(lessonID) {
 }
 
 function loadExercise(lessonID) {
-
+    let unitID = lessonID.split(".")[0];
+    body.innerHTML +=
+    `<nav id="exercise-header">
+        <div class="material-symbols-outlined" onclick="redirectUnit('${unitID}')">arrow_back_ios</div>
+        <h2 id="exercise-title">Exercise ${lessonID.toUpperCase()}</h2>
+    <div id="exercise-stats"><span id="exercise-progress">0</span> / <span id="exercise-total">0</span></div>
+    </nav>
+    <main id="exercise-body">
+        ${exerciseJSON[lessonID]}
+    </main>`
 }
 
 /* Redirect */
