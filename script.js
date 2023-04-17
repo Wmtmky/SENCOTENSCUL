@@ -1,4 +1,4 @@
-let version = "04162100";
+let version = "04162110";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -113,6 +113,7 @@ var completedJSON = {
     // intentionally blank
 }
 var currentExercises = [];
+var maxExerciseLength = 20;
 
 window.onload = function() {
     loadPage();
@@ -300,7 +301,7 @@ function countUnitExercises(unit) {
 
 function unitEnter(unitID) {
     if (lessonsJSON[unitID] == undefined) return;
-    for (lesson in lessonsJSON[unit].lessons) {
+    for (lesson in lessonsJSON[unitID].lessons) {
         if (!completedJSON[unitID]?.[lesson]) {
             redirectLearn(lesson);
         }
@@ -314,6 +315,11 @@ function unitExercise(unitID) {
 /* Exercise Functions */
 
 function nextQuestion(qNum) {
+    let prompt = document.getElementById('prompt');
+    let promptAux = document.getElementById('prompt-aux');
+    let inputArea = document.getElementById('input');
+    let specChars = document.getElementById('spec-chars');
+
 
 }
 
