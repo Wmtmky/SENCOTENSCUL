@@ -1,4 +1,4 @@
-let version = "04161820";
+let version = "04161957";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -127,7 +127,7 @@ function loadPage() {
     let resource = location.href.split("SENCOTENSCUL/")[1];
     if(!resource) {
         loadCompleted();
-        for(unit in lessonsJSON) {
+        for (unit in lessonsJSON) {
             document.getElementById("unit-" + unit + "-total").innerText = countUnitExercises(unit);
         }
         return;
@@ -158,11 +158,13 @@ function loadOverview(pageID) {
     let overviewDesc = document.getElementById("overview-desc");
     let overviewCitation = document.getElementById("overview-citation");
     let overviewContent = document.getElementById("overview-content");
+    let overviewExercise = document.getElementById("overview-exercise");
 
     overviewTitle.innerText = "Unit " + pageID.toUpperCase() + ": " + lessonsJSON[pageID].title;
     overviewDesc.innerHTML = lessonsJSON[pageID].desc;
     overviewCitation.innerText = "Reference: Saanich Grammar, " + lessonsJSON[pageID].citation;
     overviewContent.innerHTML = "";
+    overviewExercise.setAttribute('onclick', `unitExercise(${pageID})`);
 
     root.style.setProperty('--accent-medium', "var(--" + lessonsJSON[pageID].color + "-medium)");
     root.style.setProperty('--accent-light', "var(--" + lessonsJSON[pageID].color + "-light)");
@@ -208,17 +210,24 @@ function loadExercise(lessonID) {
     </nav>
     <main id="exercise-body">
         ${exerciseJSON[lessonID]}
+        <h3 id="prompt"></h3>
+        <div id="prompt-aux"></div>
+        <textarea id="input"></textarea>
+        <div id="spec-chars"></div>
     </main>
     <footer id="exercise-footer">
-        <div id="question-status"></div>
-        <div id="next-question-btn" onclick="nextQuestion()"></div>
+        <div id="question-status">
+            <div id="question-correctness"></div>
+            <div id="question-correct-answer"></div>
+        </div>
+        <div id="next-question-btn" onclick="nextQuestion()">Next</div>
     </footer>
     `
 }
 
 function loadCompleted(unitID) {
     let storedCompleted = localStorage.getItem("completed");
-    if (storedCompleted) completedJSON = JSON.parse(storedCompleted);
+    if(storedCompleted) completedJSON = JSON.parse(storedCompleted);
     
     if(unitID == undefined) {
         for(unit in completedJSON) {
@@ -277,6 +286,21 @@ function countUnitExercises(unit) {
     }
     return count;
 }
+
+function unitEnter(unitID) {
+    if (lessonsJSON?.[unitID] == undefined) return;
+    for (lesson in lessonsJSON[unit].lessons) {
+        if (!completedJSON[unitID][lesson]) {
+            redirectLearn(lesson);
+        }
+    }
+}
+
+function unitExercise(unitID) {
+    console.log("Not Available at this time - Unit " + unitID);
+}
+
+/* Exercise Functions */
 
 
 

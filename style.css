@@ -404,6 +404,19 @@ footer#exercise-footer{
     width: 100%;
 }
 
+footer#exercise-footer div#question-status{
+    display: flex;
+    flex-direction: column;
+}
+
+    footer#exercise-footer div:is(#next-question-btn, #question-correct-answer){
+        font-family: Monda, 'Arial Narrow Bold', sans-serif;
+        font-weight: bold;
+        font-size: large;
+    }
+
+
+
 @media only screen and (min-width: 1000px) {
     main:not(#main-nav){
         padding: var(--header-height);
