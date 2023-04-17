@@ -1,4 +1,4 @@
-let version = "04162123";
+let version = "04162135";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -101,6 +101,15 @@ var exerciseJSON = {
                 "you go"
             ]
         },
+        {
+            "type":"gse",
+            "prompt":"YÁ¸.",
+            "answers":[
+                "he goes",
+                "she goes",
+                "it goes"
+            ]
+        }
     ],
     "1.2":{
 
@@ -211,7 +220,7 @@ function loadExercise(lessonID) {
     <div id="exercise-stats"><span id="exercise-progress">0</span> / <span id="exercise-total">0</span></div>
     </nav>
     <main id="exercise-body">
-        <h3 id="prompt"></h3>
+        <h2 id="prompt"></h2>
         <div id="prompt-aux"></div>
         <textarea id="input"></textarea>
         <div id="spec-chars"></div>
@@ -221,7 +230,7 @@ function loadExercise(lessonID) {
             <div id="question-correctness"></div>
             <div id="question-correct-answer"></div>
         </div>
-        <div id="next-question-btn" onclick="nextQuestion(0)">Next</div>
+        <div id="next-question-btn" onclick="nextQuestion(0, '${lessonID}')">Next</div>
     </footer>
     `
 
@@ -314,7 +323,10 @@ function unitExercise(unitID) {
 
 /* Exercise Functions */
 
-function nextQuestion(qNum) {
+function nextQuestion(qNum, lessonID) {
+
+    if(qNum >= currentExercises.length) return completeExercise(lessonID);
+
     let currentExercise = currentExercises[qNum];
     console.log(currentExercise);
 
@@ -327,9 +339,9 @@ function nextQuestion(qNum) {
     let questionCorrectAnswer = document.getElementById('question-correct-answer');
     let nextQuestionBtn = document.getElementById('next-question-btn');
 
-    nextQuestionBtn.setAttribute('onclick', `nextQuestion(${qNum + 1})`);
+    nextQuestionBtn.setAttribute('onclick', `nextQuestion(${qNum + 1}, '${lessonID}')`);
 
-    if (currentExercise.type == "gse") prompt.innerHTML = "Translate the following from SENĆOŦEN to English:<br>"
+    if (currentExercise.type == "gse") prompt.innerHTML = "Translate the following sentence to English:<br>"
     prompt.innerHTML += currentExercise.prompt;
 
 }
