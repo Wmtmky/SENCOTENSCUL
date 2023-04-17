@@ -1,4 +1,4 @@
-let version = "04162110";
+let version = "04162117";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -166,7 +166,7 @@ function loadOverview(pageID) {
     overviewDesc.innerHTML = lessonsJSON[pageID].desc;
     overviewCitation.innerText = "Reference: Saanich Grammar, " + lessonsJSON[pageID].citation;
     overviewContent.innerHTML = "";
-    overviewExercise.setAttribute('onclick', `unitExercise(${pageID})`);
+    overviewExercise.setAttribute('onclick', `unitExercise('${pageID}')`);
 
     root.style.setProperty('--accent-medium', "var(--" + lessonsJSON[pageID].color + "-medium)");
     root.style.setProperty('--accent-light', "var(--" + lessonsJSON[pageID].color + "-light)");
@@ -315,11 +315,21 @@ function unitExercise(unitID) {
 /* Exercise Functions */
 
 function nextQuestion(qNum) {
+    let currentExercise = currentExercises[qNum];
+
     let prompt = document.getElementById('prompt');
     let promptAux = document.getElementById('prompt-aux');
     let inputArea = document.getElementById('input');
     let specChars = document.getElementById('spec-chars');
 
+    let questionCorrectness = document.getElementById('question-correctness');
+    let questionCorrectAnswer = document.getElementById('question-correct-answer');
+    let nextQuestionBtn = document.getElementById('next-question-btn');
+
+    nextQuestionBtn.setAttribute('onclick', qNum + 1);
+
+    if (currentExercise.type == "gse") prompt.innerHTML = "Translate the following from SENĆOŦEN to English:<br>"
+    prompt.innerHTML += currentExercise.prompt;
 
 }
 

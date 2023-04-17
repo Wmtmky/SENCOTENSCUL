@@ -337,7 +337,7 @@ main#overview-body{
     }
 
         main#overview-body div#overview-details div#overview-desc{
-            user-select: auto;
+            user-select: text;
             max-width: 1000px;
         }
 
