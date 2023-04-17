@@ -1,4 +1,4 @@
-let version = "04161810";
+let version = "04161820";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -245,6 +245,7 @@ function loadCompleted(unitID) {
 
 function redirectUnit(unitID, event) {
     if(event?.target?.innerText.match("exercise|subdirectory")) return;
+    if(lessonsJSON?.[unitID] == undefined) return
 
     window.location.assign("https://wmtmky.github.io/SENCOTENSCUL/overview#" + unitID);
 }
@@ -274,6 +275,7 @@ function countUnitExercises(unit) {
     for (lesson in lessonsJSON[unit].lessons) {
         if(!lessonsJSON[unit].lessons[lesson].exerciseless) count++;
     }
+    return count;
 }
 
 
