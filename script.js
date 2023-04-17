@@ -1,4 +1,4 @@
-let version = "04170016";
+let version = "04170057";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -204,7 +204,7 @@ function loadLearn(lessonID) {
     `<nav id="learn-header">
         <div class="material-symbols-outlined" onclick="redirectUnit('${unitID}')">arrow_back_ios</div>
         <h2 id="lesson-title">Lesson ${lessonID.toUpperCase()}</h2>
-    <div id="lesson-exercise" class="material-symbols-outlined" onclick="redirectExercise('${lessonID}')">exercise</div>
+        <div id="lesson-exercise" class="material-symbols-outlined" onclick="redirectExercise('${lessonID}', this)">exercise</div>
     </nav>
     <main id="lesson-body">
         ${textbookJSON[lessonID]}
@@ -217,11 +217,11 @@ function loadExercise(lessonID) {
     `<nav id="exercise-header">
         <div class="material-symbols-outlined" onclick="redirectUnit('${unitID}')">arrow_back_ios</div>
         <h2 id="exercise-title">Exercise ${lessonID.toUpperCase()}</h2>
-    <div id="exercise-stats"><span id="exercise-progress">0</span> / <span id="exercise-total">0</span></div>
+        <div id="exercise-stats"><span id="exercise-progress">0</span> / <span id="exercise-total">0</span></div>
     </nav>
     <main id="exercise-body">
         <h2 id="prompt"></h2>
-        <div id="prompt-aux"></div>
+        <div id="prompt-content"></div>
         <textarea id="input"></textarea>
         <div id="spec-chars"></div>
     </main>
@@ -328,10 +328,9 @@ function nextQuestion(qNum, lessonID) {
     if(qNum >= currentExercises.length) return completeExercise(lessonID);
 
     let currentExercise = currentExercises[qNum];
-    console.log(currentExercise);
 
     let prompt = document.getElementById('prompt');
-    let promptAux = document.getElementById('prompt-aux');
+    let promptContent = document.getElementById('prompt-content');
     let inputArea = document.getElementById('input');
     let specChars = document.getElementById('spec-chars');
 
@@ -341,11 +340,32 @@ function nextQuestion(qNum, lessonID) {
     let nextQuestionBtn = document.getElementById('next-question-btn');
 
     exerciseProgress.innerText = qNum + 1;
+    questionCorrectness.replaceChildren;
+    questionCorrectAnswer.replaceChildren;
     nextQuestionBtn.setAttribute('onclick', `nextQuestion(${qNum + 1}, '${lessonID}')`);
 
-    if (currentExercise.type == "gse") prompt.innerHTML = "Translate the following sentence to English:<br>";
-    if (currentExercise.type == "ges") prompt.innerHTML = "Translate the following sentence to SENĆOŦEN:<br>";
-    prompt.innerHTML += currentExercise.prompt;
+    if (currentExercise.type == "gse") {
+        prompt.innerHTML = "Translate the following sentence to English:";
+        promptContent.innerHTML = currentExercise.prompt;
+    }
+    else if (currentExercise.type == "ges") {
+        prompt.innerHTML = "Translate the following sentence to SENĆOŦEN:";
+        promptContent.innerHTML = currentExercise.prompt;
+    }
+
+}
+
+function checkAnswer(qNum, lessonID) {
+
+    let inputArea = document.getElementById('input');
+    let questionCorrectness = document.getElementById('question-correctness');
+
+    if(!inputArea.value) {
+        questionCorrectness.innerText = "Answer the question before checking!";
+        return;
+    }
+
+    let currentExercise = currentExercises[qNum];
 
 }
 
