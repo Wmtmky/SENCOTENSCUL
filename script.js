@@ -1,4 +1,4 @@
-let version = "04162135";
+let version = "04162144";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -335,14 +335,20 @@ function nextQuestion(qNum, lessonID) {
     let inputArea = document.getElementById('input');
     let specChars = document.getElementById('spec-chars');
 
+    let exerciseProgress = document.getElementById('exercise-progress');
     let questionCorrectness = document.getElementById('question-correctness');
     let questionCorrectAnswer = document.getElementById('question-correct-answer');
     let nextQuestionBtn = document.getElementById('next-question-btn');
 
+    exerciseProgress.innerText = qNum + 1;
     nextQuestionBtn.setAttribute('onclick', `nextQuestion(${qNum + 1}, '${lessonID}')`);
 
-    if (currentExercise.type == "gse") prompt.innerHTML = "Translate the following sentence to English:<br>"
+    if (currentExercise.type == "gse") prompt.innerHTML = "Translate the following sentence to English:<br>";
+    if (currentExercise.type == "ges") prompt.innerHTML = "Translate the following sentence to SENĆOŦEN:<br>";
     prompt.innerHTML += currentExercise.prompt;
 
 }
 
+function completeExercise() {
+
+}

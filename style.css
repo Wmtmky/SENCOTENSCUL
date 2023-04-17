@@ -399,10 +399,11 @@ main#exercise-body{
     }
 
     main#exercise-body textarea{
+        height: calc(4 * var(--header-height));
         margin: var(--secondary-height) 0;
         padding: var(--secondary-height);
         resize: none;
-        
+        font-family: Inter, 'Arial Narrow Bold', sans-serif;
     }
 
 footer#exercise-footer{
@@ -426,11 +427,12 @@ footer#exercise-footer{
     footer#exercise-footer div:is(#next-question-btn, #question-correct-answer){
         font-family: Monda, 'Arial Narrow Bold', sans-serif;
         font-weight: bold;
-        font-size: large;
+        font-size: 36px;
         width: min(calc(2 * var(--header-height)), 40vw);
     }
 
     footer#exercise-footer div#next-question-btn{
+        height: calc(2 / 3 * var(--header-height));
         background-color: var(--blue-medium);
         border-radius: var(--secondary-height);
         text-align: center;
