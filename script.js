@@ -1,4 +1,4 @@
-let version = "04170151";
+let version = "04170203";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -247,7 +247,7 @@ function loadExercise(lessonID) {
             <div id="question-correctness"></div>
             <div id="question-correct-answer"></div>
         </div>
-        <div id="next-question-btn">Next</div>
+        <div id="next-question-btn">Check Answer</div>
     </footer>
     `
 
@@ -359,8 +359,9 @@ function nextQuestion(qNum, lessonID) {
     let nextQuestionBtn = document.getElementById('next-question-btn');
 
     exerciseProgress.innerText = qNum + 1;
-    questionCorrectness.replaceChildren;
-    questionCorrectAnswer.replaceChildren;
+    questionCorrectness.innerText = "";
+    questionCorrectAnswer.innerText = "";
+    nextQuestionBtn.innerText = "Check Answer";
     nextQuestionBtn.setAttribute('onclick', `checkAnswer(${qNum}, '${lessonID}')`);
 
     inputArea.value = "";
@@ -386,13 +387,21 @@ function checkAnswer(qNum, lessonID) {
     
     if (currentExercise.type == "gse") inputAnswer = inputAnswer.toLowerCase();
     else if(currentExercise.type == "ges") inputAnswer = inputAnswer.toUpperCase();
-    if (!inputAnswer) return;
-    
+
     let questionCorrectness = document.getElementById('question-correctness');
     let questionCorrectAnswer = document.getElementById('question-correct-answer');
     let nextQuestionBtn = document.getElementById('next-question-btn');
     
+    nextQuestionBtn.innerText = "Next";
     nextQuestionBtn.setAttribute('onclick', `nextQuestion(${qNum + 1}, '${lessonID}')`);
+
+    if (!inputAnswer) {
+        questionCorrectness.innerText = "Input you answer into the text field before continuing";
+        return;
+    }
+
+    console.log(inputAnswer);
+    console.log(currentExercise.answers)
 
     if (currentExercise.answers.includes(inputAnswer)) {
         questionCorrectness.innerText = "Correct!";
@@ -414,7 +423,8 @@ function completeExercise(lessonID) {
     inputArea.style.display = 'none';
     specChars.style.display = 'none';
 
-    completedJSON[lessonID].push({lessonID: true});
+    if (!completedJSON[lessonID]) completedJSON[lessonID] = [{lessonID: true}];
+    else completedJSON[lessonID].push({lessonID: true});
     localStorage.setItem("completed", JSON.stringify(completedJSON));
 
     redirectUnit(lessonID.split(".")[0]);

@@ -447,7 +447,7 @@ footer#exercise-footer{
         flex-direction: column;
     }
 
-    footer#exercise-footer div:is(#next-question-btn, #question-correct-answer){
+    footer#exercise-footer div:is(#next-question-btn, #question-correctness){
         font-family: Monda, 'Arial Narrow Bold', sans-serif;
         font-weight: bold;
         font-size: large;
