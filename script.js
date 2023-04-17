@@ -1,4 +1,4 @@
-let version = "04161957";
+let version = "04162100";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -112,6 +112,7 @@ var exerciseJSON = {
 var completedJSON = {
     // intentionally blank
 }
+var currentExercises = [];
 
 window.onload = function() {
     loadPage();
@@ -136,18 +137,18 @@ function loadPage() {
     let subPage = resource.split("#")[1];
 
     if(resource.includes("overview")) {
-        if(lessonsJSON?.[subPage] == undefined) return redirectMain();
+        if(lessonsJSON[subPage] == undefined) return redirectMain();
         loadOverview(subPage);
         loadCompleted(subPage);
     }
 
     else if(resource.includes("learn")) {
-        if(textbookJSON?.[subPage] == undefined) return redirectMain();
+        if(textbookJSON[subPage] == undefined) return redirectMain();
         loadLearn(subPage);
     }
 
     else if(resource.includes("exercise")) {
-        if(exerciseJSON?.[subPage] == undefined) return redirectMain();
+        if(exerciseJSON[subPage] == undefined) return redirectMain();
         loadExercise(subPage);
     }
 
@@ -209,7 +210,6 @@ function loadExercise(lessonID) {
     <div id="exercise-stats"><span id="exercise-progress">0</span> / <span id="exercise-total">0</span></div>
     </nav>
     <main id="exercise-body">
-        ${exerciseJSON[lessonID]}
         <h3 id="prompt"></h3>
         <div id="prompt-aux"></div>
         <textarea id="input"></textarea>
@@ -220,9 +220,20 @@ function loadExercise(lessonID) {
             <div id="question-correctness"></div>
             <div id="question-correct-answer"></div>
         </div>
-        <div id="next-question-btn" onclick="nextQuestion()">Next</div>
+        <div id="next-question-btn" onclick="nextQuestion(0)">Next</div>
     </footer>
     `
+
+    // Durstenfeld Shuffle
+    let temp = [...exerciseJSON[lessonID]];
+    for (let i = temp.length - 1; i > 0; i --) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [ temp[i], temp[j] ] = [ temp[j], temp[i] ];
+    }
+    currentExercises = temp.slice(0, Math.min(temp.length, maxExerciseLength));
+
+    document.getElementById('exercise-total').innerText = currentExercises.length;
+
 }
 
 function loadCompleted(unitID) {
@@ -254,7 +265,7 @@ function loadCompleted(unitID) {
 
 function redirectUnit(unitID, event) {
     if(event?.target?.innerText.match("exercise|subdirectory")) return;
-    if(lessonsJSON?.[unitID] == undefined) return
+    if(lessonsJSON[unitID] == undefined) return
 
     window.location.assign("https://wmtmky.github.io/SENCOTENSCUL/overview#" + unitID);
 }
@@ -288,9 +299,9 @@ function countUnitExercises(unit) {
 }
 
 function unitEnter(unitID) {
-    if (lessonsJSON?.[unitID] == undefined) return;
+    if (lessonsJSON[unitID] == undefined) return;
     for (lesson in lessonsJSON[unit].lessons) {
-        if (!completedJSON[unitID][lesson]) {
+        if (!completedJSON[unitID]?.[lesson]) {
             redirectLearn(lesson);
         }
     }
@@ -302,5 +313,7 @@ function unitExercise(unitID) {
 
 /* Exercise Functions */
 
+function nextQuestion(qNum) {
 
+}
 

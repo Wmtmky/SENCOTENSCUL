@@ -398,8 +398,11 @@ footer#exercise-footer{
     position: fixed;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     left: 0;
     bottom: 0;
+    padding: 0 var(--secondary-height);
     height: calc(2 * var(--header-height));
     width: 100%;
 }
@@ -413,6 +416,7 @@ footer#exercise-footer div#question-status{
         font-family: Monda, 'Arial Narrow Bold', sans-serif;
         font-weight: bold;
         font-size: large;
+        width: min(calc(2 * var(--header-height)), 40vw);
     }
 
 
@@ -420,5 +424,9 @@ footer#exercise-footer div#question-status{
 @media only screen and (min-width: 1000px) {
     main:not(#main-nav){
         padding: var(--header-height);
+    }
+
+    footer#exercise-footer{
+        padding: 0 var(--header-height);
     }
 }
