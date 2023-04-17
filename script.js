@@ -1,4 +1,4 @@
-let version = "04170232";
+let version = "04170241";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -438,19 +438,20 @@ function checkAnswer(qNum, lessonID) {
 }
 
 function completeExercise(lessonID) {
-    let unitID =- lessonID.split(".")[0];
+    let unitID = lessonID.split(".")[0];
 
     let prompt = document.getElementById('prompt');
     let promptContent = document.getElementById('prompt-content');
     let inputArea = document.getElementById('input');
     let specChars = document.getElementById('spec-chars');
 
+    prompt.innerText = "Congratulations!"
     promptContent.replaceChildren();
     inputArea.style.display = 'none';
     specChars.style.display = 'none';
 
-    if (!completedJSON[unitID]) completedJSON[unitID] = [{lessonID: true}];
-    else completedJSON[unitID].push({lessonID: true});
+    if (!completedJSON[unitID]) completedJSON[unitID] = {lessonID: true};
+    else completedJSON[unitID][lessonID] = true;
     localStorage.setItem("completed", JSON.stringify(completedJSON));
 
     let nextQuestionBtn = document.getElementById('next-question-btn');
