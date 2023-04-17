@@ -461,28 +461,23 @@ footer#exercise-footer{
         border-radius: var(--secondary-height);
         justify-content: center;
         align-items: center;
-        transform: translate(5px, 5px);
+        transform: translate(3px, 3px);
         background-color: var(--blue-medium);
-        box-shadow: -5px -5px 0 var(--blue-dark);
+        box-shadow: -3px -3px 0 var(--blue-dark);
         transition: 250ms;
-    }
-
-    footer#exercise-footer div#next-question-btn:is(.invalid-text){
-        background-color: var(--grey-medium);
-        transform: translate(0, 0);
     }
 
     footer#exercise-footer div#next-question-btn:is(.correct-answer){
         background-color: var(--green-medium);
-        box-shadow: -5px -5px 0 var(--green-dark);
+        box-shadow: -3px -3px 0 var(--green-dark);
     }
 
     footer#exercise-footer div#next-question-btn:is(.incorrect-answer){
         background-color: var(--red-medium);
-        box-shadow: -5px -5px 0 var(--red-dark);
+        box-shadow: -3px -3px 0 var(--red-dark);
     }
 
-    footer#exercise-footer div#next-question-btn:hover{
+    footer#exercise-footer div#next-question-btn:hover:active{
         transform: translate(0, 0);
         box-shadow: 0 0 0 var(--black);
     }

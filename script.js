@@ -1,4 +1,4 @@
-let version = "04170138";
+let version = "04170151";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -394,10 +394,28 @@ function checkAnswer(qNum, lessonID) {
     
     nextQuestionBtn.setAttribute('onclick', `nextQuestion(${qNum + 1}, '${lessonID}')`);
 
-    
+    if (currentExercise.answers.includes(inputAnswer)) {
+        questionCorrectness.innerText = "Correct!";
+        return;
+    }
+
+    questionCorrectness.innerText = "Incorrect... The correct answer was";
+    questionCorrectAnswer.innerText = currentExercise.answers[0];
 
 }
 
-function completeExercise() {
+function completeExercise(lessonID) {
+    let prompt = document.getElementById('prompt');
+    let promptContent = document.getElementById('prompt-content');
+    let inputArea = document.getElementById('input');
+    let specChars = document.getElementById('spec-chars');
 
+    promptContent.replaceChildren();
+    inputArea.style.display = 'none';
+    specChars.style.display = 'none';
+
+    completedJSON[lessonID].push({lessonID: true});
+    localStorage.setItem("completed", JSON.stringify(completedJSON));
+
+    redirectUnit(lessonID.split(".")[0]);
 }
