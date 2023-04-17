@@ -1,4 +1,4 @@
-let version = "04170057";
+let version = "04170138";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -223,14 +223,31 @@ function loadExercise(lessonID) {
         <h2 id="prompt"></h2>
         <div id="prompt-content"></div>
         <textarea id="input"></textarea>
-        <div id="spec-chars"></div>
+        <div id="spec-chars">
+            <div>Á</div>
+            <div>Ⱥ</div>
+            <div>Ć</div>
+            <div>Ȼ</div>
+            <div>Í</div>
+            <div>₭</div>
+            <div>Ḵ</div>
+            <div>Ḱ</div>
+            <div>Ƚ</div>
+            <div>Ṉ</div>
+            <div>Ś</div>
+            <div>Ŧ</div>
+            <div>Ⱦ</div>
+            <div>Ṯ</div>
+            <div>W̱</div>
+            <div>X̱</div>
+        </div>
     </main>
     <footer id="exercise-footer">
         <div id="question-status">
             <div id="question-correctness"></div>
             <div id="question-correct-answer"></div>
         </div>
-        <div id="next-question-btn" onclick="nextQuestion(0, '${lessonID}')">Next</div>
+        <div id="next-question-btn">Next</div>
     </footer>
     `
 
@@ -243,6 +260,8 @@ function loadExercise(lessonID) {
     currentExercises = temp.slice(0, Math.min(temp.length, maxExerciseLength));
 
     document.getElementById('exercise-total').innerText = currentExercises.length;
+
+    nextQuestion(0, lessonID);
 
 }
 
@@ -312,7 +331,7 @@ function unitEnter(unitID) {
     if (lessonsJSON[unitID] == undefined) return;
     for (lesson in lessonsJSON[unitID].lessons) {
         if (!completedJSON[unitID]?.[lesson]) {
-            redirectLearn(lesson);
+            return redirectLearn(lesson);
         }
     }
 }
@@ -342,30 +361,40 @@ function nextQuestion(qNum, lessonID) {
     exerciseProgress.innerText = qNum + 1;
     questionCorrectness.replaceChildren;
     questionCorrectAnswer.replaceChildren;
-    nextQuestionBtn.setAttribute('onclick', `nextQuestion(${qNum + 1}, '${lessonID}')`);
+    nextQuestionBtn.setAttribute('onclick', `checkAnswer(${qNum}, '${lessonID}')`);
 
+    inputArea.value = "";
     if (currentExercise.type == "gse") {
         prompt.innerHTML = "Translate the following sentence to English:";
         promptContent.innerHTML = currentExercise.prompt;
+        specChars.style.display = "none";
     }
     else if (currentExercise.type == "ges") {
         prompt.innerHTML = "Translate the following sentence to SENĆOŦEN:";
         promptContent.innerHTML = currentExercise.prompt;
+        specChars.style.display = "flex";
     }
 
 }
 
 function checkAnswer(qNum, lessonID) {
 
-    let inputArea = document.getElementById('input');
-    let questionCorrectness = document.getElementById('question-correctness');
-
-    if(!inputArea.value) {
-        questionCorrectness.innerText = "Answer the question before checking!";
-        return;
-    }
-
     let currentExercise = currentExercises[qNum];
+
+    let inputArea = document.getElementById('input');
+    let inputAnswer = inputArea.value.replace(/[^0-9a-zA-ZÁȺĆȻÍ₭ḴḰȽṈŚŦȾṮW̱X̱]/, "").replace(/\s{2,}/, " ").trim();
+    
+    if (currentExercise.type == "gse") inputAnswer = inputAnswer.toLowerCase();
+    else if(currentExercise.type == "ges") inputAnswer = inputAnswer.toUpperCase();
+    if (!inputAnswer) return;
+    
+    let questionCorrectness = document.getElementById('question-correctness');
+    let questionCorrectAnswer = document.getElementById('question-correct-answer');
+    let nextQuestionBtn = document.getElementById('next-question-btn');
+    
+    nextQuestionBtn.setAttribute('onclick', `nextQuestion(${qNum + 1}, '${lessonID}')`);
+
+    
 
 }
 

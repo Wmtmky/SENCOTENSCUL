@@ -396,7 +396,11 @@ main#exercise-body{
 
     main#exercise-body > *{
         width: min(600px, calc(100vw - 2 * var(--secondary-height)));
-        margin: var(--secondary-height) 0;
+        margin: calc(var(--secondary-height) / 2) 0;
+    }
+
+    main#exercise-body div#prompt-content{
+        margin-left: var(--secondary-height);
     }
 
     main#exercise-body textarea{
@@ -407,6 +411,21 @@ main#exercise-body{
         font-family: Inter, 'Arial Narrow Bold', sans-serif;
         font-size: large;
     }
+
+    main#exercise-body div#spec-chars{
+        display: none;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: calc(var(--secondary-height) / 2);
+    }
+
+        main#exercise-body div#spec-chars > div{
+            padding: 1vh;
+            border-radius: 1vh;
+            color: var(--grey-dark);
+            border: 1px solid var(--grey-dark);
+        }
 
 footer#exercise-footer{
     position: fixed;
@@ -419,8 +438,8 @@ footer#exercise-footer{
     padding: 0 var(--secondary-height);
     height: calc(2 * var(--header-height));
     width: 100%;
-    background-color: var(--blue-light);
-    color: var(--blue-dark);
+    background-color: var(--grey-light);
+    color: var(--grey-dark);
 }
 
     footer#exercise-footer div#question-status{
@@ -438,13 +457,29 @@ footer#exercise-footer{
     footer#exercise-footer div#next-question-btn{
         display: flex;
         height: calc(2 / 3 * var(--header-height));
-        background-color: var(--blue-medium);
         color: var(--white);
         border-radius: var(--secondary-height);
         justify-content: center;
         align-items: center;
         transform: translate(5px, 5px);
+        background-color: var(--blue-medium);
         box-shadow: -5px -5px 0 var(--blue-dark);
+        transition: 250ms;
+    }
+
+    footer#exercise-footer div#next-question-btn:is(.invalid-text){
+        background-color: var(--grey-medium);
+        transform: translate(0, 0);
+    }
+
+    footer#exercise-footer div#next-question-btn:is(.correct-answer){
+        background-color: var(--green-medium);
+        box-shadow: -5px -5px 0 var(--green-dark);
+    }
+
+    footer#exercise-footer div#next-question-btn:is(.incorrect-answer){
+        background-color: var(--red-medium);
+        box-shadow: -5px -5px 0 var(--red-dark);
     }
 
     footer#exercise-footer div#next-question-btn:hover{
