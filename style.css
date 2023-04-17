@@ -451,12 +451,16 @@ footer#exercise-footer{
         font-family: Monda, 'Arial Narrow Bold', sans-serif;
         font-weight: bold;
         font-size: large;
-        width: min(calc(2 * var(--header-height)), 40vw);
+    }
+
+    footer#exercise-footer div#question-correctness{
+        width: 40vw;
     }
 
     footer#exercise-footer div#next-question-btn{
         display: flex;
         height: calc(2 / 3 * var(--header-height));
+        width:calc(2 * var(--header-height));
         color: var(--white);
         border-radius: var(--secondary-height);
         justify-content: center;

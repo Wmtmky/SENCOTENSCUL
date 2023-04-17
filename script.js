@@ -1,4 +1,4 @@
-let version = "04170203";
+let version = "04170218";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -364,6 +364,10 @@ function nextQuestion(qNum, lessonID) {
     nextQuestionBtn.innerText = "Check Answer";
     nextQuestionBtn.setAttribute('onclick', `checkAnswer(${qNum}, '${lessonID}')`);
 
+    let exerciseFooter = document.getElementById('exercise-footer');
+    exerciseFooter.style.backgroundColor = "var(--grey-light)";
+    exerciseFooter.style.color = "var(--grey-dark)";
+
     inputArea.value = "";
     if (currentExercise.type == "gse") {
         prompt.innerHTML = "Translate the following sentence to English:";
@@ -383,33 +387,37 @@ function checkAnswer(qNum, lessonID) {
     let currentExercise = currentExercises[qNum];
 
     let inputArea = document.getElementById('input');
-    let inputAnswer = inputArea.value.replace(/[^0-9a-zA-ZÁȺĆȻÍ₭ḴḰȽṈŚŦȾṮW̱X̱]/, "").replace(/\s{2,}/, " ").trim();
+    let inputAnswer = inputArea.value.replace(/[^0-9a-zA-Z ÁȺĆȻÍ₭ḴḰȽṈŚŦȾṮW̱X̱]/, "").replace(/\s{2,}/, " ").trim();
     
     if (currentExercise.type == "gse") inputAnswer = inputAnswer.toLowerCase();
     else if(currentExercise.type == "ges") inputAnswer = inputAnswer.toUpperCase();
 
+    let exerciseFooter = document.getElementById('exercise-footer');
     let questionCorrectness = document.getElementById('question-correctness');
     let questionCorrectAnswer = document.getElementById('question-correct-answer');
     let nextQuestionBtn = document.getElementById('next-question-btn');
     
-    nextQuestionBtn.innerText = "Next";
-    nextQuestionBtn.setAttribute('onclick', `nextQuestion(${qNum + 1}, '${lessonID}')`);
-
     if (!inputAnswer) {
-        questionCorrectness.innerText = "Input you answer into the text field before continuing";
+        questionCorrectness.innerText = "Input your answer into the text field before continuing";
         return;
     }
-
-    console.log(inputAnswer);
-    console.log(currentExercise.answers)
-
+    
+    nextQuestionBtn.innerText = "Next";
+    setTimeout(function() {
+        nextQuestionBtn.setAttribute('onclick', `nextQuestion(${qNum + 1}, '${lessonID}')`);
+    }, 1000);
+    
     if (currentExercise.answers.includes(inputAnswer)) {
         questionCorrectness.innerText = "Correct!";
+        exerciseFooter.style.backgroundColor = "var(--green-light)";
+        exerciseFooter.style.color = "var(--green-dark)";
         return;
     }
 
     questionCorrectness.innerText = "Incorrect... The correct answer was";
     questionCorrectAnswer.innerText = currentExercise.answers[0];
+    exerciseFooter.style.backgroundColor = "var(--red-light)";
+    exerciseFooter.style.color = "var(--red-dark)";
 
 }
 
