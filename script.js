@@ -1,4 +1,4 @@
-let version = "04170241";
+let version = "04170246";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -398,7 +398,7 @@ function checkAnswer(qNum, lessonID) {
     let currentExercise = currentExercises[qNum];
 
     let inputArea = document.getElementById('input');
-    let inputAnswer = inputArea.value.replace(/[^0-9a-zA-Z ÁȺĆȻÍ₭ḴḰȽṈŚŦȾṮW̱X̱]/, "").replace(/\s{2,}/, " ").trim();
+    let inputAnswer = inputArea.value.replace(/[^0-9a-zA-Z ÁȺĆȻÍ₭ḴḰȽṈŚŦȾṮW̱X̱]/g, "").replace(/\s{2,}/g, " ").trim();
     
     if (currentExercise.type == "gse") inputAnswer = inputAnswer.toLowerCase();
     else if(currentExercise.type == "ges") inputAnswer = inputAnswer.toUpperCase();
@@ -417,9 +417,6 @@ function checkAnswer(qNum, lessonID) {
     setTimeout(function() {
         nextQuestionBtn.setAttribute('onclick', `nextQuestion(${qNum + 1}, '${lessonID}')`);
     }, 1000);
-    
-    console.log(inputAnswer);
-    console.log(currentExercise.answers);
 
     if (currentExercise.answers.includes(inputAnswer)) {
         questionCorrectness.innerText = "Correct!";
@@ -450,8 +447,8 @@ function completeExercise(lessonID) {
     inputArea.style.display = 'none';
     specChars.style.display = 'none';
 
-    if (!completedJSON[unitID]) completedJSON[unitID] = {lessonID: true};
-    else completedJSON[unitID][lessonID] = true;
+    if (!completedJSON[unitID]) completedJSON[unitID] = {};
+    completedJSON[unitID][lessonID] = true;
     localStorage.setItem("completed", JSON.stringify(completedJSON));
 
     let nextQuestionBtn = document.getElementById('next-question-btn');
