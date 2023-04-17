@@ -1,4 +1,4 @@
-let version = "04161714";
+let version = "04161810";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -271,8 +271,8 @@ function toggleInfobox() {
 
 function countUnitExercises(unit) {
     let count = 0;
-    for (lesson of lessonsJSON[unit].lessons) {
-        if(!lesson.exerciseless) count++;
+    for (lesson in lessonsJSON[unit].lessons) {
+        if(!lessonsJSON[unit].lessons[lesson].exerciseless) count++;
     }
 }
 

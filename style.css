@@ -39,7 +39,7 @@
     font-size: 36px;
 }
 
-.material-symbols-outlined:not(.exerciseless):hover{
+.material-symbols-outlined:not(.exerciseless,.unavailable):hover{
     transform: scale(1.25);
     cursor: pointer;
 }
