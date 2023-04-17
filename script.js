@@ -1,4 +1,4 @@
-let version = "04170218";
+let version = "04170232";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -66,6 +66,15 @@ var lessonsJSON =
             },
             "1.3":{
                 "desc":"Intransitive Verbs III: Extra Notes"
+            },
+            "1.4":{
+                "desc":"Transitive Verbs I"
+            },
+            "1.5":{
+                "desc":"Transitive Verbs II"
+            },
+            "1.6":{
+                "desc":"Transitive Verbs III"
             }
         }
     }
@@ -361,8 +370,10 @@ function nextQuestion(qNum, lessonID) {
     exerciseProgress.innerText = qNum + 1;
     questionCorrectness.innerText = "";
     questionCorrectAnswer.innerText = "";
+
     nextQuestionBtn.innerText = "Check Answer";
     nextQuestionBtn.setAttribute('onclick', `checkAnswer(${qNum}, '${lessonID}')`);
+    nextQuestionBtn.className = "";
 
     let exerciseFooter = document.getElementById('exercise-footer');
     exerciseFooter.style.backgroundColor = "var(--grey-light)";
@@ -407,10 +418,14 @@ function checkAnswer(qNum, lessonID) {
         nextQuestionBtn.setAttribute('onclick', `nextQuestion(${qNum + 1}, '${lessonID}')`);
     }, 1000);
     
+    console.log(inputAnswer);
+    console.log(currentExercise.answers);
+
     if (currentExercise.answers.includes(inputAnswer)) {
         questionCorrectness.innerText = "Correct!";
         exerciseFooter.style.backgroundColor = "var(--green-light)";
         exerciseFooter.style.color = "var(--green-dark)";
+        nextQuestionBtn.classList.add('correct-answer');
         return;
     }
 
@@ -418,10 +433,13 @@ function checkAnswer(qNum, lessonID) {
     questionCorrectAnswer.innerText = currentExercise.answers[0];
     exerciseFooter.style.backgroundColor = "var(--red-light)";
     exerciseFooter.style.color = "var(--red-dark)";
+    nextQuestionBtn.classList.add('incorrect-answer');
 
 }
 
 function completeExercise(lessonID) {
+    let unitID =- lessonID.split(".")[0];
+
     let prompt = document.getElementById('prompt');
     let promptContent = document.getElementById('prompt-content');
     let inputArea = document.getElementById('input');
@@ -431,9 +449,10 @@ function completeExercise(lessonID) {
     inputArea.style.display = 'none';
     specChars.style.display = 'none';
 
-    if (!completedJSON[lessonID]) completedJSON[lessonID] = [{lessonID: true}];
-    else completedJSON[lessonID].push({lessonID: true});
+    if (!completedJSON[unitID]) completedJSON[unitID] = [{lessonID: true}];
+    else completedJSON[unitID].push({lessonID: true});
     localStorage.setItem("completed", JSON.stringify(completedJSON));
 
-    redirectUnit(lessonID.split(".")[0]);
+    let nextQuestionBtn = document.getElementById('next-question-btn');
+    nextQuestionBtn.setAttribute('onclick', `redirectUnit('${unitID}')`);
 }
