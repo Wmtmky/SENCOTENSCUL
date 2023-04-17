@@ -1,4 +1,4 @@
-let version = "04161642";
+let version = "04161714";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -128,7 +128,7 @@ function loadPage() {
     if(!resource) {
         loadCompleted();
         for(unit in lessonsJSON) {
-            document.getElementById("unit-" + unit + "-total").innerText = Object.keys(lessonsJSON[unit].lessons).length;
+            document.getElementById("unit-" + unit + "-total").innerText = countUnitExercises(unit);
         }
         return;
     }
@@ -222,7 +222,15 @@ function loadCompleted(unitID) {
     
     if(unitID == undefined) {
         for(unit in completedJSON) {
-            document.getElementById("unit-" + unit + "-progress").innerText = Object.keys(completedJSON[unit]).length;
+            let unitProgressDiv = document.getElementById("unit-" + unit + "-progress");
+            let unitStatus = document.getElementById("unit-" + unit + "-status");
+
+            let unitProgress = Object.keys(completedJSON[unit]).length;
+            unitProgressDiv.innerText = unitProgress;
+
+            if(unitProgress >= countUnitExercises(unit)) {
+                unitStatus.innerText = "done";
+            }
         }
         return;
     }
@@ -250,7 +258,7 @@ function redirectExercise(lessonID, elem) {
     window.location.assign("https://wmtmky.github.io/SENCOTENSCUL/exercise#" + lessonID);
 }
 
-/* Nav Functions */
+/* Accessory Functions */
 
 function resetProgress() {
     localStorage.clear();
@@ -261,7 +269,12 @@ function toggleInfobox() {
     infoLightbox.style.display = (infoLightbox.style.display != 'flex') ? 'flex' : 'none';
 }
 
-
+function countUnitExercises(unit) {
+    let count = 0;
+    for (lesson of lessonsJSON[unit].lessons) {
+        if(!lesson.exerciseless) count++;
+    }
+}
 
 
 
