@@ -1,4 +1,4 @@
-let version = "04170246";
+let version = "alpha-1.0";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -443,6 +443,7 @@ function completeExercise(lessonID) {
     let specChars = document.getElementById('spec-chars');
 
     prompt.innerText = "Congratulations!"
+    prompt.style.textAlign = "center";
     promptContent.replaceChildren();
     inputArea.style.display = 'none';
     specChars.style.display = 'none';
