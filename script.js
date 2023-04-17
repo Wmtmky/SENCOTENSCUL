@@ -1,4 +1,4 @@
-let version = "04162210";
+let version = "04170016";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -53,7 +53,7 @@ var lessonsJSON =
     },
     "1":{
         "title":"The Basic Sentence",
-        "desc":"This unit looks at the simplest phrases employing transitive and intransitive verbs. In these phrases, the verbs always comes first, followed by the subject which in this case will be a pronoun.<br>Recall that intransitive verbs cannot have a direct object, while transitive verbs do.<br>In SENĆOŦEN, transitive verbs also always end in a<em>transitivising suffix</em> like -T, -NEW̱, or -TW̱. Intransitive verbs cannot end with these suffixes but could still naturally end with those letters.<br><br>Examples:<br>Intransitive: She runs away &rarr; ȽÁU<br>Transitive: He hit her &rarr; ŚJET",
+        "desc":"This unit looks at the simplest phrases employing transitive and intransitive verbs. In these phrases, the verbs always comes first, followed by the subject which in this case will be a pronoun.<br>Recall that intransitive verbs cannot have a direct object, while transitive verbs do.<br>In SENĆOŦEN, transitive verbs also always end in a <em>transitivising suffix</em> like -T, -NEW̱, or -TW̱. Intransitive verbs cannot end with these suffixes but could still naturally end with those letters.<br><br>Examples:<br>Intransitive: She runs away &rarr; ȽÁU<br>Transitive: He hit her &rarr; ŚJET",
         "citation":"§1.1 - §1.2",
         "color":"purple",
         "exerciseCount":0,

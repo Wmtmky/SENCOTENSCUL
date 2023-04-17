@@ -432,11 +432,13 @@ footer#exercise-footer{
     }
 
     footer#exercise-footer div#next-question-btn{
+        display: flex;
         height: calc(2 / 3 * var(--header-height));
         background-color: var(--blue-medium);
         color: var(--white);
         border-radius: var(--secondary-height);
-        text-align: center;
+        justify-content: center;
+        align-items: center;
     }
 
 @media only screen and (min-width: 1000px) {
