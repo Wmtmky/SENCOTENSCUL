@@ -1,4 +1,4 @@
-let version = "04162144";
+let version = "04162210";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -82,10 +82,10 @@ var textbookJSON = {
     "1.3":"1.3 lesson",
 }
 var exerciseJSON = {
-    "ii.1":{},
-    "ii.2":{},
-    "iii.1":{},
-    "iii.2":{},
+    "ii.1":[],
+    "ii.2":[],
+    "iii.1":[],
+    "iii.2":[],
     "1.1":[
         {
             "type":"gse",
@@ -111,12 +111,12 @@ var exerciseJSON = {
             ]
         }
     ],
-    "1.2":{
+    "1.2":[
 
-    },
-    "1.3":{
+    ],
+    "1.3":[
 
-    }
+    ]
 }
 var completedJSON = {
     // intentionally blank

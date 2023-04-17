@@ -427,13 +427,14 @@ footer#exercise-footer{
     footer#exercise-footer div:is(#next-question-btn, #question-correct-answer){
         font-family: Monda, 'Arial Narrow Bold', sans-serif;
         font-weight: bold;
-        font-size: 36px;
+        font-size: large;
         width: min(calc(2 * var(--header-height)), 40vw);
     }
 
     footer#exercise-footer div#next-question-btn{
         height: calc(2 / 3 * var(--header-height));
         background-color: var(--blue-medium);
+        color: var(--white);
         border-radius: var(--secondary-height);
         text-align: center;
     }
