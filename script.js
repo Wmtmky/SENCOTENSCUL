@@ -1,4 +1,4 @@
-let version = "04162117";
+let version = "04162123";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -316,6 +316,7 @@ function unitExercise(unitID) {
 
 function nextQuestion(qNum) {
     let currentExercise = currentExercises[qNum];
+    console.log(currentExercise);
 
     let prompt = document.getElementById('prompt');
     let promptAux = document.getElementById('prompt-aux');
@@ -326,7 +327,7 @@ function nextQuestion(qNum) {
     let questionCorrectAnswer = document.getElementById('question-correct-answer');
     let nextQuestionBtn = document.getElementById('next-question-btn');
 
-    nextQuestionBtn.setAttribute('onclick', qNum + 1);
+    nextQuestionBtn.setAttribute('onclick', `nextQuestion(${qNum + 1})`);
 
     if (currentExercise.type == "gse") prompt.innerHTML = "Translate the following from SENĆOŦEN to English:<br>"
     prompt.innerHTML += currentExercise.prompt;

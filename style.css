@@ -419,7 +419,10 @@ footer#exercise-footer div#question-status{
         width: min(calc(2 * var(--header-height)), 40vw);
     }
 
-
+    footer#exercise-footer div#next-question-btn{
+        text-align: center;
+        border-radius: var(--secondary-height);
+    }
 
 @media only screen and (min-width: 1000px) {
     main:not(#main-nav){
