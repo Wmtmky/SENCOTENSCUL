@@ -1,4 +1,4 @@
-let version = "alpha-1.0";
+let version = "alpha-1.1";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -87,8 +87,11 @@ var textbookJSON = {
     "iii.1":"Lesson III.1 is Not Available",
     "iii.2":"Lesson III.2 is Not Available",
     "1.1":"Singular pronouns refer to one participant: that is I, you, he, she, or it.<br>Observe the following models:<br><br>YÁ¸ SEN. &rarr; I go.<br>YÁ¸ SW̱. &rarr; You go.<br>YÁ¸. &rarr; He/She/It goes.<br><br>Observe how the verb comes before the subject. The pronouns after the verb are <em>particles</em>, which cannot act as words by themselves. Note the subject is implied to be a third person (he/she/it) by default.<br><br>Here are some more intransitive verbs, which all happen to be motion related.<br><br>YÁ¸ &rarr; 'go'<br>ŚTEṈ &rarr; Walk<br>ȻONEṈET &rarr; 'run'<br>W̱ITEṈ &rarr; 'jump'",
-    "1.2":"1.2 lesson",
-    "1.3":"1.3 lesson",
+    "1.2":"This lesson is not public. For demonstration purposes of this prototype, please see Lesson 1.1",
+    "1.3":"This lesson is not public. For demonstration purposes of this prototype, please see Lesson 1.1",
+    "1.4":"This lesson is not public. For demonstration purposes of this prototype, please see Lesson 1.1",
+    "1.5":"This lesson is not public. For demonstration purposes of this prototype, please see Lesson 1.1",
+    "1.6":"This lesson is not public. For demonstration purposes of this prototype, please see Lesson 1.1"
 }
 var exerciseJSON = {
     "ii.1":[],
@@ -124,6 +127,15 @@ var exerciseJSON = {
 
     ],
     "1.3":[
+
+    ],
+    "1.4":[
+
+    ],
+    "1.5":[
+
+    ],
+    "1.6":[
 
     ]
 }
@@ -442,7 +454,7 @@ function completeExercise(lessonID) {
     let inputArea = document.getElementById('input');
     let specChars = document.getElementById('spec-chars');
 
-    prompt.innerText = "Congratulations!"
+    prompt.innerText = "Exercises Complete!"
     prompt.style.textAlign = "center";
     promptContent.replaceChildren();
     inputArea.style.display = 'none';
