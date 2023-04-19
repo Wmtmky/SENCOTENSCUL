@@ -1,4 +1,4 @@
-let version = "alpha-1.1";
+let version = "alpha-1.2";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -233,6 +233,7 @@ function loadLearn(lessonID) {
 }
 
 function loadExercise(lessonID) {
+    console.log(completedJSON)
     let unitID = lessonID.split(".")[0];
     body.innerHTML +=
     `<nav id="exercise-header">
@@ -268,7 +269,7 @@ function loadExercise(lessonID) {
             <div id="question-correctness"></div>
             <div id="question-correct-answer"></div>
         </div>
-        <div id="next-question-btn">Check Answer</div>
+        <div id="next-question-btn">Continue</div>
     </footer>
     `
 
@@ -355,6 +356,7 @@ function unitEnter(unitID) {
             return redirectLearn(lesson);
         }
     }
+    redirectUnit(unitID);
 }
 
 function unitExercise(unitID) {
@@ -460,6 +462,7 @@ function completeExercise(lessonID) {
     inputArea.style.display = 'none';
     specChars.style.display = 'none';
 
+    console.log(completedJSON)
     if (!completedJSON[unitID]) completedJSON[unitID] = {};
     completedJSON[unitID][lessonID] = true;
     localStorage.setItem("completed", JSON.stringify(completedJSON));
