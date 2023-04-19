@@ -1,4 +1,4 @@
-let version = "alpha-1.2";
+let version = "alpha-1.3";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -156,9 +156,11 @@ function redirectMain() {
 }
 
 function loadPage() {
+    loadCompleted();
+
     let resource = location.href.split("SENCOTENSCUL/")[1];
     if(!resource) {
-        loadCompleted();
+        displayCompleted();
         for (unit in lessonsJSON) {
             document.getElementById("unit-" + unit + "-total").innerText = countUnitExercises(unit);
         }
@@ -170,7 +172,7 @@ function loadPage() {
     if(resource.includes("overview")) {
         if(lessonsJSON[subPage] == undefined) return redirectMain();
         loadOverview(subPage);
-        loadCompleted(subPage);
+        displayCompleted(subPage);
     }
 
     else if(resource.includes("learn")) {
@@ -233,7 +235,6 @@ function loadLearn(lessonID) {
 }
 
 function loadExercise(lessonID) {
-    console.log(completedJSON)
     let unitID = lessonID.split(".")[0];
     body.innerHTML +=
     `<nav id="exercise-header">
@@ -287,10 +288,13 @@ function loadExercise(lessonID) {
 
 }
 
-function loadCompleted(unitID) {
+function loadCompleted() {
     let storedCompleted = localStorage.getItem("completed");
     if(storedCompleted) completedJSON = JSON.parse(storedCompleted);
-    
+}
+
+function displayCompleted(unitID) {
+
     if(unitID == undefined) {
         for(unit in completedJSON) {
             let unitProgressDiv = document.getElementById("unit-" + unit + "-progress");
@@ -462,7 +466,6 @@ function completeExercise(lessonID) {
     inputArea.style.display = 'none';
     specChars.style.display = 'none';
 
-    console.log(completedJSON)
     if (!completedJSON[unitID]) completedJSON[unitID] = {};
     completedJSON[unitID][lessonID] = true;
     localStorage.setItem("completed", JSON.stringify(completedJSON));
