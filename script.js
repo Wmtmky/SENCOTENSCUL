@@ -146,7 +146,8 @@ var currentExercises = [];
 var maxExerciseLength = 20;
 
 window.onload = function() {
-    loadPage();
+    window.location.assign("https://wmtmky.github.io/SENCOTENSCUL/maintenance")
+    //loadPage();
 }
 
 /* Load Page Features*/
@@ -449,6 +450,9 @@ function checkAnswer(qNum, lessonID) {
     exerciseFooter.style.backgroundColor = "var(--red-light)";
     exerciseFooter.style.color = "var(--red-dark)";
     nextQuestionBtn.classList.add('incorrect-answer');
+
+    currentExercises.push(currentExercise);
+    document.getElementById('exercise-total').innerText++;
 
 }
 
