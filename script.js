@@ -1,4 +1,4 @@
-let version = "alpha-1.3";
+let version = "alpha-1.4";
 
 var root = document.querySelector(':root');
 var body = document.querySelector('body');
@@ -119,7 +119,80 @@ var exerciseJSON = {
             "answers":[
                 "he goes",
                 "she goes",
-                "it goes"
+                "it goes",
+                "they go"
+            ]
+        },
+        {
+            "type":"gse",
+            "prompt":"ŚTEṈ SEN.",
+            "answers":[
+                "i walk"
+            ]
+        },
+        {
+            "type":"gse",
+            "prompt":"ŚTEṈ SW̱.",
+            "answers":[
+                "you walk"
+            ]
+        },
+        {
+            "type":"gse",
+            "prompt":"ŚTEṈ.",
+            "answers":[
+                "he walks",
+                "she walks",
+                "it walks",
+                "they walk"
+            ]
+        },
+        {
+            "type":"gse",
+            "prompt":"ȻONEṈET SEN.",
+            "answers":[
+                "i run"
+            ]
+        },
+        {
+            "type":"gse",
+            "prompt":"ȻONEṈET SW̱.",
+            "answers":[
+                "you run"
+            ]
+        },
+        {
+            "type":"gse",
+            "prompt":"ȻONEṈET.",
+            "answers":[
+                "he runs",
+                "she runs",
+                "it runs",
+                "they run"
+            ]
+        },
+        {
+            "type":"gse",
+            "prompt":"W̱ITEṈ SEN.",
+            "answers":[
+                "i jump"
+            ]
+        },
+        {
+            "type":"gse",
+            "prompt":"W̱ITEṈ SW̱.",
+            "answers":[
+                "you jump"
+            ]
+        },
+        {
+            "type":"gse",
+            "prompt":"W̱ITEṈ.",
+            "answers":[
+                "he jumps",
+                "she jumps",
+                "it jumps",
+                "they jump"
             ]
         }
     ],
